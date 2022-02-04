@@ -87,9 +87,17 @@ For detailed reference documentation, please visit [the API docs][1].
 
 ## Update provider
 
-update version in `provider/go.mod`
+Update the version of `github.com/fortinetdev/terraform-provider-fortios` in `provider/go.mod`.
 
+Next update and build the provider:
+
+    # update dependencies
     (cd provider && go get -u && go mod tidy)
+
+    # update provider/resources.go
     ./update_scripts/update.sh
-    make build_node
-    make build_python
+
+    # build sdk's
+    make build_go && make build_nodejs && make build_python
+
+Commit the changes, including the build sdks and tag the commit.
