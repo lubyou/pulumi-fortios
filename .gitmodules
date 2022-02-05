@@ -1,0 +1,3 @@
+[submodule "terraform-provider-fortios"]
+	path = terraform-provider-fortios
+	url = https://github.com/fortinetdev/terraform-provider-fortios.git
