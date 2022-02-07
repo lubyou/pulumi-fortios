@@ -11,13 +11,13 @@ Update the `terraform-provider-fortios` sub module
     (cd terraform-provider-fortios && git checkout v1.xx.x)
 
 
-Next update and build the provider:
+Next, update and build the provider:
 
     # update dependencies
-    (cd provider && go get -u && go mod tidy)
+    (cd provider && go mod tidy && cd -)
 
     # update provider/resources.go
-    ./update_scripts/update.sh
+    update_scripts/update.sh
 
     # build sdk's
     make build_go && make build_nodejs && make build_python
