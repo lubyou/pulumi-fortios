@@ -9,7 +9,8 @@ replace (
 )
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.13.0
-	github.com/pulumi/pulumi/sdk/v3 v3.19.0
+	github.com/hashicorp/terraform-plugin-sdk v1.17.2
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.18.0
+	github.com/pulumi/pulumi/sdk/v3 v3.23.2
 	github.com/terraform-providers/terraform-provider-fortios v1.3.0
 )
