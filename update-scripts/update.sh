@@ -2,7 +2,7 @@
 set -e
 
 SCRIPT_ROOT=$(dirname $0)
-PROVIDER_NAME=$(yq '.provider.name' $SCRIPT_ROOT/provider_config.yml)
+PROVIDER_NAME=$(yq eval '.provider.name' $SCRIPT_ROOT/provider_config.yml)
 
 $SCRIPT_ROOT/extract_resources.py \
     ../terraform-provider-$PROVIDER_NAME/$PROVIDER_NAME/provider.go \
