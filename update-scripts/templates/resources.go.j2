@@ -18,12 +18,13 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-{{ provider_config.name }}/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/terraform-providers/terraform-provider-{{ provider_config.name }}/{{ provider_config.name }}"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
+	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 )
 
 // all of the token components used below.
@@ -46,7 +47,7 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider({{ provider_config.name }}.Provider())
+	p := shimv1.NewProvider(fortios.Provider().(*schema.Provider))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
