@@ -18,15 +18,15 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "seq_num>1"
 // 		sample1, err := fortios.GetRouterStaticList(ctx, &GetRouterStaticListArgs{
-// 			Filter: pulumi.StringRef("seq_num>1"),
+// 			Filter: &opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

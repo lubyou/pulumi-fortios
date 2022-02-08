@@ -18,7 +18,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -30,8 +29,9 @@ import (
 // 			return err
 // 		}
 // 		ctx.Export("output1", sample1)
+// 		opt0 := "schedule==always&action==accept,action==deny"
 // 		sample2, err := fortios.GetFirewallPolicyList(ctx, &GetFirewallPolicyListArgs{
-// 			Filter: pulumi.StringRef("schedule==always&action==accept,action==deny"),
+// 			Filter: &opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

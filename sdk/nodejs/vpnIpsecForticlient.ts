@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
+ * import * as fortios from "@pulumi/fortios";
  *
  * // fortios_vpnipsec_phase1interface.trname2:
  * const trname4 = new fortios.VpnIpsecPhase1Interface("trname4", {

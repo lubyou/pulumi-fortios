@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,7 +66,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -114,7 +114,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -162,7 +162,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //

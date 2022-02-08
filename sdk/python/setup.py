@@ -45,8 +45,8 @@ setup(name='pulumi_fortios',
       cmdclass={
           'install': InstallPluginCommand,
       },
-      keywords='pulumi fortios',
-      url='https://pulumi.io',
+      keywords='pulumi fortios category/cloud',
+      url='https://www.pulumi.com',
       project_urls={
           'Repository': 'https://github.com/pulumi/pulumi-fortios'
       },

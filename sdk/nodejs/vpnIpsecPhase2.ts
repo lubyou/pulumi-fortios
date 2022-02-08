@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
+ * import * as fortios from "@pulumi/fortios";
  *
  * const trnamex2 = new fortios.VpnIpsecPhase1("trnamex2", {
  *     acctVerify: "disable",

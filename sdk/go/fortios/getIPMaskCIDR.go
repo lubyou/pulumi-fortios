@@ -19,7 +19,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -32,8 +31,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		opt0 := trnameGetSystemInterface.Ip
 // 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &GetIPMaskCIDRArgs{
-// 			Ipmask: pulumi.StringRef(trnameGetSystemInterface.Ip),
+// 			Ipmask: &opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -49,7 +49,6 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -62,8 +61,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		opt0 := trnameGetSystemInterface.Ip
 // 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &GetIPMaskCIDRArgs{
-// 			Ipmask: pulumi.StringRef(trnameGetSystemInterface.Ip),
+// 			Ipmask: &opt0,
 // 			Ipmasklists: []string{
 // 				"21.1.1.1 255.255.255.0",
 // 				"22.1.1.1 255.255.255.240",

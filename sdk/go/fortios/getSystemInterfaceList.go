@@ -18,15 +18,15 @@ import (
 // package main
 //
 // import (
-// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "name!=port1"
 // 		_, err := fortios.GetSystemInterfaceList(ctx, &GetSystemInterfaceListArgs{
-// 			Filter: pulumi.StringRef("name!=port1"),
+// 			Filter: &opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err

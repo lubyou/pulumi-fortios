@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ### Example1
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
+ * import * as fortios from "@pulumi/fortios";
  *
  * const test = new fortios.FirewallSecurityPolicySort("test", {
  *     sortby: "policyid",
