@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,7 +42,13 @@ import (
 //
 // ## Import
 //
-// Firewall MulticastAddress can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Firewall MulticastAddress can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
@@ -83,15 +88,9 @@ type FirewallMulticastAddress struct {
 func NewFirewallMulticastAddress(ctx *pulumi.Context,
 	name string, args *FirewallMulticastAddressArgs, opts ...pulumi.ResourceOption) (*FirewallMulticastAddress, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &FirewallMulticastAddressArgs{}
 	}
 
-	if args.EndIp == nil {
-		return nil, errors.New("invalid value for required argument 'EndIp'")
-	}
-	if args.StartIp == nil {
-		return nil, errors.New("invalid value for required argument 'StartIp'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastAddress
 	err := ctx.RegisterResource("fortios:index/firewallMulticastAddress:FirewallMulticastAddress", name, args, &resource, opts...)
@@ -182,11 +181,11 @@ type firewallMulticastAddressArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp string `pulumi:"endIp"`
+	EndIp *string `pulumi:"endIp"`
 	// Tag name.
 	Name *string `pulumi:"name"`
 	// First IPv4 address (inclusive) in the range for the address.
-	StartIp string `pulumi:"startIp"`
+	StartIp *string `pulumi:"startIp"`
 	// Broadcast address and subnet.
 	Subnet *string `pulumi:"subnet"`
 	// Config object tagging. The structure of `tagging` block is documented below.
@@ -210,11 +209,11 @@ type FirewallMulticastAddressArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Final IPv4 address (inclusive) in the range for the address.
-	EndIp pulumi.StringInput
+	EndIp pulumi.StringPtrInput
 	// Tag name.
 	Name pulumi.StringPtrInput
 	// First IPv4 address (inclusive) in the range for the address.
-	StartIp pulumi.StringInput
+	StartIp pulumi.StringPtrInput
 	// Broadcast address and subnet.
 	Subnet pulumi.StringPtrInput
 	// Config object tagging. The structure of `tagging` block is documented below.

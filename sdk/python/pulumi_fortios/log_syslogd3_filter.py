@@ -653,7 +653,13 @@ class LogSyslogd3Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd3 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd3 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogd3Filter:LogSyslogd3Filter labelname LogSyslogd3Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogd3Filter:LogSyslogd3Filter labelname LogSyslogd3Filter
@@ -713,7 +719,13 @@ class LogSyslogd3Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd3 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd3 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogd3Filter:LogSyslogd3Filter labelname LogSyslogd3Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogd3Filter:LogSyslogd3Filter labelname LogSyslogd3Filter

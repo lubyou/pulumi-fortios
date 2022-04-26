@@ -17,7 +17,7 @@ Next, update and build the provider:
     (cd provider && go mod tidy && cd -)
 
     # update provider/resources.go
-    update_scripts/update.sh
+    update-scripts/update.sh
 
     # build sdk's
     make build_go && make build_nodejs && make build_python

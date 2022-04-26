@@ -901,7 +901,13 @@ class FirewallPolicy46(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Policy46 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Policy46 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
@@ -990,7 +996,13 @@ class FirewallPolicy46(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Policy46 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Policy46 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallPolicy46:FirewallPolicy46 labelname {{policyid}}

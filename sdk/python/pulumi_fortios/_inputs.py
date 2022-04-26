@@ -709,6 +709,7 @@ __all__ = [
     'SystemAutomationStitchActionArgs',
     'SystemAutomationStitchDestinationArgs',
     'SystemAutomationTriggerFieldArgs',
+    'SystemAutomationTriggerLogidBlockArgs',
     'SystemCentralManagementServerListArgs',
     'SystemClusterSyncDownIntfsBeforeSessSyncArgs',
     'SystemClusterSyncSessionSyncFilterArgs',
@@ -53099,7 +53100,7 @@ class SystemAutomationTriggerFieldArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] id: Entry ID.
+        :param pulumi.Input[int] id: Log ID.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] value: Value.
         """
@@ -53114,7 +53115,7 @@ class SystemAutomationTriggerFieldArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[int]]:
         """
-        Entry ID.
+        Log ID.
         """
         return pulumi.get(self, "id")
 
@@ -53145,6 +53146,29 @@ class SystemAutomationTriggerFieldArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SystemAutomationTriggerLogidBlockArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] id: Log ID.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Log ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type

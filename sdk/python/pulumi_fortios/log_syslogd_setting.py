@@ -650,7 +650,13 @@ class LogSyslogdSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting
@@ -707,7 +713,13 @@ class LogSyslogdSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogdSetting:LogSyslogdSetting labelname LogSyslogdSetting

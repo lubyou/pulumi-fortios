@@ -204,7 +204,13 @@ class WirelessControllerVapGroup(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController VapGroup can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController VapGroup can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}
@@ -231,7 +237,13 @@ class WirelessControllerVapGroup(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController VapGroup can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController VapGroup can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup labelname {{name}}

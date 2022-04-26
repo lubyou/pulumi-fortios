@@ -21,7 +21,7 @@ class GetSystemSdnConnectorResult:
     """
     A collection of values returned by GetSystemSdnConnector.
     """
-    def __init__(__self__, access_key=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compute_generation=None, domain=None, external_account_lists=None, external_ips=None, forwarding_rules=None, gcp_project=None, gcp_project_lists=None, group_name=None, ha_status=None, ibm_region=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_type=None, password=None, private_key=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_lists=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, verify_certificate=None, vpc_id=None):
+    def __init__(__self__, access_key=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compute_generation=None, domain=None, external_account_lists=None, external_ips=None, forwarding_rules=None, gcp_project=None, gcp_project_lists=None, group_name=None, ha_status=None, ibm_region=None, ibm_region_gen1=None, ibm_region_gen2=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_type=None, password=None, private_key=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_lists=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, verify_certificate=None, vpc_id=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -70,6 +70,12 @@ class GetSystemSdnConnectorResult:
         if ibm_region and not isinstance(ibm_region, str):
             raise TypeError("Expected argument 'ibm_region' to be a str")
         pulumi.set(__self__, "ibm_region", ibm_region)
+        if ibm_region_gen1 and not isinstance(ibm_region_gen1, str):
+            raise TypeError("Expected argument 'ibm_region_gen1' to be a str")
+        pulumi.set(__self__, "ibm_region_gen1", ibm_region_gen1)
+        if ibm_region_gen2 and not isinstance(ibm_region_gen2, str):
+            raise TypeError("Expected argument 'ibm_region_gen2' to be a str")
+        pulumi.set(__self__, "ibm_region_gen2", ibm_region_gen2)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -306,6 +312,22 @@ class GetSystemSdnConnectorResult:
         IBM cloud region name.
         """
         return pulumi.get(self, "ibm_region")
+
+    @property
+    @pulumi.getter(name="ibmRegionGen1")
+    def ibm_region_gen1(self) -> str:
+        """
+        IBM cloud compute generation 1 region name.
+        """
+        return pulumi.get(self, "ibm_region_gen1")
+
+    @property
+    @pulumi.getter(name="ibmRegionGen2")
+    def ibm_region_gen2(self) -> str:
+        """
+        IBM cloud compute generation 2 region name.
+        """
+        return pulumi.get(self, "ibm_region_gen2")
 
     @property
     @pulumi.getter
@@ -615,6 +637,8 @@ class AwaitableGetSystemSdnConnectorResult(GetSystemSdnConnectorResult):
             group_name=self.group_name,
             ha_status=self.ha_status,
             ibm_region=self.ibm_region,
+            ibm_region_gen1=self.ibm_region_gen1,
+            ibm_region_gen2=self.ibm_region_gen2,
             id=self.id,
             key_passwd=self.key_passwd,
             login_endpoint=self.login_endpoint,
@@ -691,6 +715,8 @@ def get_system_sdn_connector(name: Optional[str] = None,
         group_name=__ret__.group_name,
         ha_status=__ret__.ha_status,
         ibm_region=__ret__.ibm_region,
+        ibm_region_gen1=__ret__.ibm_region_gen1,
+        ibm_region_gen2=__ret__.ibm_region_gen2,
         id=__ret__.id,
         key_passwd=__ret__.key_passwd,
         login_endpoint=__ret__.login_endpoint,

@@ -169,7 +169,13 @@ class SwitchControllerAutoConfigDefault(pulumi.CustomResource):
 
         ## Import
 
-        SwitchControllerAutoConfig Default can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchControllerAutoConfig Default can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault
@@ -195,7 +201,13 @@ class SwitchControllerAutoConfigDefault(pulumi.CustomResource):
 
         ## Import
 
-        SwitchControllerAutoConfig Default can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchControllerAutoConfig Default can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault labelname SwitchControllerAutoConfigDefault

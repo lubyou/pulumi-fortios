@@ -717,7 +717,13 @@ class FirewallVip64(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Vip64 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Vip64 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}
@@ -779,7 +785,13 @@ class FirewallVip64(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Vip64 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Vip64 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallVip64:FirewallVip64 labelname {{name}}

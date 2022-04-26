@@ -10,11 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
+// Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,7.0.0`.
 //
 // ## Import
 //
-// SwitchController PortPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// SwitchController PortPolicy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy labelname {{name}}

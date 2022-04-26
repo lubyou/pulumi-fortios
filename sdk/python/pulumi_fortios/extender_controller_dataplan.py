@@ -35,6 +35,7 @@ class ExtenderControllerDataplanArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ExtenderControllerDataplan resource.
+        :param pulumi.Input[str] apn: APN configuration.
         :param pulumi.Input[str] auth_type: Authentication type. Valid values: `none`, `pap`, `chap`.
         :param pulumi.Input[int] billing_date: Billing day of the month (1 - 31).
         :param pulumi.Input[int] capacity: Capacity in MB (0 - 102400000).
@@ -45,6 +46,7 @@ class ExtenderControllerDataplanArgs:
         :param pulumi.Input[str] name: FortiExtender dataplan name
         :param pulumi.Input[str] overage: Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] password: Password.
+        :param pulumi.Input[str] pdn: PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
         :param pulumi.Input[int] preferred_subnet: Preferred subnet mask (8 - 32).
         :param pulumi.Input[str] private_network: Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] signal_period: Signal period (600 to 18000 seconds).
@@ -98,6 +100,9 @@ class ExtenderControllerDataplanArgs:
     @property
     @pulumi.getter
     def apn(self) -> Optional[pulumi.Input[str]]:
+        """
+        APN configuration.
+        """
         return pulumi.get(self, "apn")
 
     @apn.setter
@@ -227,6 +232,9 @@ class ExtenderControllerDataplanArgs:
     @property
     @pulumi.getter
     def pdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+        """
         return pulumi.get(self, "pdn")
 
     @pdn.setter
@@ -355,6 +363,7 @@ class _ExtenderControllerDataplanState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ExtenderControllerDataplan resources.
+        :param pulumi.Input[str] apn: APN configuration.
         :param pulumi.Input[str] auth_type: Authentication type. Valid values: `none`, `pap`, `chap`.
         :param pulumi.Input[int] billing_date: Billing day of the month (1 - 31).
         :param pulumi.Input[int] capacity: Capacity in MB (0 - 102400000).
@@ -365,6 +374,7 @@ class _ExtenderControllerDataplanState:
         :param pulumi.Input[str] name: FortiExtender dataplan name
         :param pulumi.Input[str] overage: Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] password: Password.
+        :param pulumi.Input[str] pdn: PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
         :param pulumi.Input[int] preferred_subnet: Preferred subnet mask (8 - 32).
         :param pulumi.Input[str] private_network: Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] signal_period: Signal period (600 to 18000 seconds).
@@ -418,6 +428,9 @@ class _ExtenderControllerDataplanState:
     @property
     @pulumi.getter
     def apn(self) -> Optional[pulumi.Input[str]]:
+        """
+        APN configuration.
+        """
         return pulumi.get(self, "apn")
 
     @apn.setter
@@ -547,6 +560,9 @@ class _ExtenderControllerDataplanState:
     @property
     @pulumi.getter
     def pdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+        """
         return pulumi.get(self, "pdn")
 
     @pdn.setter
@@ -681,7 +697,13 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
 
         ## Import
 
-        ExtenderController Dataplan can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        ExtenderController Dataplan can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
@@ -691,6 +713,7 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] apn: APN configuration.
         :param pulumi.Input[str] auth_type: Authentication type. Valid values: `none`, `pap`, `chap`.
         :param pulumi.Input[int] billing_date: Billing day of the month (1 - 31).
         :param pulumi.Input[int] capacity: Capacity in MB (0 - 102400000).
@@ -701,6 +724,7 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
         :param pulumi.Input[str] name: FortiExtender dataplan name
         :param pulumi.Input[str] overage: Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] password: Password.
+        :param pulumi.Input[str] pdn: PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
         :param pulumi.Input[int] preferred_subnet: Preferred subnet mask (8 - 32).
         :param pulumi.Input[str] private_network: Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] signal_period: Signal period (600 to 18000 seconds).
@@ -721,7 +745,13 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
 
         ## Import
 
-        ExtenderController Dataplan can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        ExtenderController Dataplan can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
@@ -835,6 +865,7 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] apn: APN configuration.
         :param pulumi.Input[str] auth_type: Authentication type. Valid values: `none`, `pap`, `chap`.
         :param pulumi.Input[int] billing_date: Billing day of the month (1 - 31).
         :param pulumi.Input[int] capacity: Capacity in MB (0 - 102400000).
@@ -845,6 +876,7 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
         :param pulumi.Input[str] name: FortiExtender dataplan name
         :param pulumi.Input[str] overage: Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] password: Password.
+        :param pulumi.Input[str] pdn: PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
         :param pulumi.Input[int] preferred_subnet: Preferred subnet mask (8 - 32).
         :param pulumi.Input[str] private_network: Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] signal_period: Signal period (600 to 18000 seconds).
@@ -883,6 +915,9 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
     @property
     @pulumi.getter
     def apn(self) -> pulumi.Output[str]:
+        """
+        APN configuration.
+        """
         return pulumi.get(self, "apn")
 
     @property
@@ -968,6 +1003,9 @@ class ExtenderControllerDataplan(pulumi.CustomResource):
     @property
     @pulumi.getter
     def pdn(self) -> pulumi.Output[str]:
+        """
+        PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+        """
         return pulumi.get(self, "pdn")
 
     @property

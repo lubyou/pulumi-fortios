@@ -215,7 +215,13 @@ class SystemFipsCc(pulumi.CustomResource):
 
         ## Import
 
-        System FipsCc can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System FipsCc can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc
@@ -255,7 +261,13 @@ class SystemFipsCc(pulumi.CustomResource):
 
         ## Import
 
-        System FipsCc can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System FipsCc can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemFipsCc:SystemFipsCc labelname SystemFipsCc

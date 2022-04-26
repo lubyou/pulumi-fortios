@@ -48,7 +48,13 @@ import (
 //
 // ## Import
 //
-// Alertemail Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Alertemail Setting can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
@@ -77,23 +83,31 @@ type AlertemailSetting struct {
 	// Emergency alert interval in minutes.
 	EmergencyInterval pulumi.IntOutput `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
-	ErrorInterval             pulumi.IntOutput    `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays    pulumi.IntOutput    `pulumi:"fdsLicenseExpiringDays"`
+	ErrorInterval pulumi.IntOutput `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntOutput `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringOutput `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs             pulumi.StringOutput `pulumi:"fdsUpdateLogs"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringOutput `pulumi:"fdsUpdateLogs"`
 	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-	FilterMode   pulumi.StringOutput `pulumi:"filterMode"`
+	FilterMode pulumi.StringOutput `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
 	FipsCcErrors pulumi.StringOutput `pulumi:"fipsCcErrors"`
 	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs pulumi.StringOutput `pulumi:"firewallAuthenticationFailureLogs"`
 	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
 	FortiguardLogQuotaWarning pulumi.StringOutput `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs        pulumi.StringOutput `pulumi:"fssoDisconnectLogs"`
-	HaLogs                    pulumi.StringOutput `pulumi:"haLogs"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringOutput `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringOutput `pulumi:"haLogs"`
 	// Information alert interval in minutes.
-	InformationInterval pulumi.IntOutput    `pulumi:"informationInterval"`
-	IpsLogs             pulumi.StringOutput `pulumi:"ipsLogs"`
-	IpsecErrorsLogs     pulumi.StringOutput `pulumi:"ipsecErrorsLogs"`
+	InformationInterval pulumi.IntOutput `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringOutput `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringOutput `pulumi:"ipsecErrorsLogs"`
 	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
 	LocalDiskUsage pulumi.IntOutput `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
@@ -105,8 +119,9 @@ type AlertemailSetting struct {
 	// Optional third email address to send alert email to (max. 64 characters).
 	Mailto3 pulumi.StringOutput `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
-	NotificationInterval pulumi.IntOutput    `pulumi:"notificationInterval"`
-	PppErrorsLogs        pulumi.StringOutput `pulumi:"pppErrorsLogs"`
+	NotificationInterval pulumi.IntOutput `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringOutput `pulumi:"pppErrorsLogs"`
 	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	Severity pulumi.StringOutput `pulumi:"severity"`
 	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
@@ -174,23 +189,31 @@ type alertemailSettingState struct {
 	// Emergency alert interval in minutes.
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
-	ErrorInterval             *int    `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays    *int    `pulumi:"fdsLicenseExpiringDays"`
+	ErrorInterval *int `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs             *string `pulumi:"fdsUpdateLogs"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs *string `pulumi:"fdsUpdateLogs"`
 	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-	FilterMode   *string `pulumi:"filterMode"`
+	FilterMode *string `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
 	FipsCcErrors *string `pulumi:"fipsCcErrors"`
 	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs *string `pulumi:"firewallAuthenticationFailureLogs"`
 	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
 	FortiguardLogQuotaWarning *string `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs        *string `pulumi:"fssoDisconnectLogs"`
-	HaLogs                    *string `pulumi:"haLogs"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs *string `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs *string `pulumi:"haLogs"`
 	// Information alert interval in minutes.
-	InformationInterval *int    `pulumi:"informationInterval"`
-	IpsLogs             *string `pulumi:"ipsLogs"`
-	IpsecErrorsLogs     *string `pulumi:"ipsecErrorsLogs"`
+	InformationInterval *int `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs *string `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs *string `pulumi:"ipsecErrorsLogs"`
 	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
 	LocalDiskUsage *int `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
@@ -202,8 +225,9 @@ type alertemailSettingState struct {
 	// Optional third email address to send alert email to (max. 64 characters).
 	Mailto3 *string `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
-	NotificationInterval *int    `pulumi:"notificationInterval"`
-	PppErrorsLogs        *string `pulumi:"pppErrorsLogs"`
+	NotificationInterval *int `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs *string `pulumi:"pppErrorsLogs"`
 	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	Severity *string `pulumi:"severity"`
 	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
@@ -242,23 +266,31 @@ type AlertemailSettingState struct {
 	// Emergency alert interval in minutes.
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
-	ErrorInterval             pulumi.IntPtrInput
-	FdsLicenseExpiringDays    pulumi.IntPtrInput
+	ErrorInterval pulumi.IntPtrInput
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
-	FdsUpdateLogs             pulumi.StringPtrInput
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringPtrInput
 	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-	FilterMode   pulumi.StringPtrInput
+	FilterMode pulumi.StringPtrInput
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
 	FipsCcErrors pulumi.StringPtrInput
 	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs pulumi.StringPtrInput
 	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
 	FortiguardLogQuotaWarning pulumi.StringPtrInput
-	FssoDisconnectLogs        pulumi.StringPtrInput
-	HaLogs                    pulumi.StringPtrInput
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringPtrInput
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringPtrInput
 	// Information alert interval in minutes.
 	InformationInterval pulumi.IntPtrInput
-	IpsLogs             pulumi.StringPtrInput
-	IpsecErrorsLogs     pulumi.StringPtrInput
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringPtrInput
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringPtrInput
 	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
 	LocalDiskUsage pulumi.IntPtrInput
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
@@ -271,7 +303,8 @@ type AlertemailSettingState struct {
 	Mailto3 pulumi.StringPtrInput
 	// Notification alert interval in minutes.
 	NotificationInterval pulumi.IntPtrInput
-	PppErrorsLogs        pulumi.StringPtrInput
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringPtrInput
 	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	Severity pulumi.StringPtrInput
 	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
@@ -314,23 +347,31 @@ type alertemailSettingArgs struct {
 	// Emergency alert interval in minutes.
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
-	ErrorInterval             *int    `pulumi:"errorInterval"`
-	FdsLicenseExpiringDays    *int    `pulumi:"fdsLicenseExpiringDays"`
+	ErrorInterval *int `pulumi:"errorInterval"`
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
-	FdsUpdateLogs             *string `pulumi:"fdsUpdateLogs"`
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs *string `pulumi:"fdsUpdateLogs"`
 	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-	FilterMode   *string `pulumi:"filterMode"`
+	FilterMode *string `pulumi:"filterMode"`
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
 	FipsCcErrors *string `pulumi:"fipsCcErrors"`
 	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs *string `pulumi:"firewallAuthenticationFailureLogs"`
 	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
 	FortiguardLogQuotaWarning *string `pulumi:"fortiguardLogQuotaWarning"`
-	FssoDisconnectLogs        *string `pulumi:"fssoDisconnectLogs"`
-	HaLogs                    *string `pulumi:"haLogs"`
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs *string `pulumi:"fssoDisconnectLogs"`
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs *string `pulumi:"haLogs"`
 	// Information alert interval in minutes.
-	InformationInterval *int    `pulumi:"informationInterval"`
-	IpsLogs             *string `pulumi:"ipsLogs"`
-	IpsecErrorsLogs     *string `pulumi:"ipsecErrorsLogs"`
+	InformationInterval *int `pulumi:"informationInterval"`
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs *string `pulumi:"ipsLogs"`
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs *string `pulumi:"ipsecErrorsLogs"`
 	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
 	LocalDiskUsage *int `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
@@ -342,8 +383,9 @@ type alertemailSettingArgs struct {
 	// Optional third email address to send alert email to (max. 64 characters).
 	Mailto3 *string `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
-	NotificationInterval *int    `pulumi:"notificationInterval"`
-	PppErrorsLogs        *string `pulumi:"pppErrorsLogs"`
+	NotificationInterval *int `pulumi:"notificationInterval"`
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs *string `pulumi:"pppErrorsLogs"`
 	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	Severity *string `pulumi:"severity"`
 	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
@@ -383,23 +425,31 @@ type AlertemailSettingArgs struct {
 	// Emergency alert interval in minutes.
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
-	ErrorInterval             pulumi.IntPtrInput
-	FdsLicenseExpiringDays    pulumi.IntPtrInput
+	ErrorInterval pulumi.IntPtrInput
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
+	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
-	FdsUpdateLogs             pulumi.StringPtrInput
+	// Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+	FdsUpdateLogs pulumi.StringPtrInput
 	// How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
-	FilterMode   pulumi.StringPtrInput
+	FilterMode pulumi.StringPtrInput
+	// Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
 	FipsCcErrors pulumi.StringPtrInput
 	// Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
 	FirewallAuthenticationFailureLogs pulumi.StringPtrInput
 	// Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
 	FortiguardLogQuotaWarning pulumi.StringPtrInput
-	FssoDisconnectLogs        pulumi.StringPtrInput
-	HaLogs                    pulumi.StringPtrInput
+	// Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+	FssoDisconnectLogs pulumi.StringPtrInput
+	// Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+	HaLogs pulumi.StringPtrInput
 	// Information alert interval in minutes.
 	InformationInterval pulumi.IntPtrInput
-	IpsLogs             pulumi.StringPtrInput
-	IpsecErrorsLogs     pulumi.StringPtrInput
+	// Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+	IpsLogs pulumi.StringPtrInput
+	// Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+	IpsecErrorsLogs pulumi.StringPtrInput
 	// Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
 	LocalDiskUsage pulumi.IntPtrInput
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
@@ -412,7 +462,8 @@ type AlertemailSettingArgs struct {
 	Mailto3 pulumi.StringPtrInput
 	// Notification alert interval in minutes.
 	NotificationInterval pulumi.IntPtrInput
-	PppErrorsLogs        pulumi.StringPtrInput
+	// Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+	PppErrorsLogs pulumi.StringPtrInput
 	// Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	Severity pulumi.StringPtrInput
 	// Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.

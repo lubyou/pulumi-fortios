@@ -363,11 +363,17 @@ class SystemVneTunnel(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure virtual network enabler tunnel. Applies to FortiOS Version `>= 6.4.2`.
+        Configure virtual network enabler tunnel. Applies to FortiOS Version `>= 6.4.1`.
 
         ## Import
 
-        System VneTunnel can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VneTunnel can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel
@@ -395,11 +401,17 @@ class SystemVneTunnel(pulumi.CustomResource):
                  args: Optional[SystemVneTunnelArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure virtual network enabler tunnel. Applies to FortiOS Version `>= 6.4.2`.
+        Configure virtual network enabler tunnel. Applies to FortiOS Version `>= 6.4.1`.
 
         ## Import
 
-        System VneTunnel can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VneTunnel can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVneTunnel:SystemVneTunnel labelname SystemVneTunnel

@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,7 +14,13 @@ import (
 //
 // ## Import
 //
-// VpnCertificate Local can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// VpnCertificate Local can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
@@ -91,12 +96,9 @@ type VpnCertificateLocal struct {
 func NewVpnCertificateLocal(ctx *pulumi.Context,
 	name string, args *VpnCertificateLocalArgs, opts ...pulumi.ResourceOption) (*VpnCertificateLocal, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &VpnCertificateLocalArgs{}
 	}
 
-	if args.PrivateKey == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateKey'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateLocal
 	err := ctx.RegisterResource("fortios:index/vpnCertificateLocal:VpnCertificateLocal", name, args, &resource, opts...)
@@ -295,7 +297,7 @@ type vpnCertificateLocalArgs struct {
 	// Password as a PEM file.
 	Password *string `pulumi:"password"`
 	// PEM format key, encrypted with a password.
-	PrivateKey string `pulumi:"privateKey"`
+	PrivateKey *string `pulumi:"privateKey"`
 	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
 	Range *string `pulumi:"range"`
 	// SCEP server challenge password for auto-regeneration.
@@ -359,7 +361,7 @@ type VpnCertificateLocalArgs struct {
 	// Password as a PEM file.
 	Password pulumi.StringPtrInput
 	// PEM format key, encrypted with a password.
-	PrivateKey pulumi.StringInput
+	PrivateKey pulumi.StringPtrInput
 	// Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
 	Range pulumi.StringPtrInput
 	// SCEP server challenge password for auto-regeneration.

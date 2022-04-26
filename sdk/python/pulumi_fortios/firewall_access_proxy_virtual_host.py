@@ -202,7 +202,13 @@ class FirewallAccessProxyVirtualHost(pulumi.CustomResource):
 
         ## Import
 
-        Firewall AccessProxyVirtualHost can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall AccessProxyVirtualHost can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
@@ -229,7 +235,13 @@ class FirewallAccessProxyVirtualHost(pulumi.CustomResource):
 
         ## Import
 
-        Firewall AccessProxyVirtualHost can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall AccessProxyVirtualHost can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost labelname {{name}}

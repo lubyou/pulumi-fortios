@@ -432,7 +432,13 @@ class SystemApiUser(pulumi.CustomResource):
         """
         ## Import
 
-        System ApiUser can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System ApiUser can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
@@ -464,7 +470,13 @@ class SystemApiUser(pulumi.CustomResource):
         """
         ## Import
 
-        System ApiUser can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System ApiUser can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemApiUser:SystemApiUser labelname {{name}}

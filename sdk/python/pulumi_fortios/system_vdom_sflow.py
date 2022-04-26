@@ -281,7 +281,13 @@ class SystemVdomSflow(pulumi.CustomResource):
 
         ## Import
 
-        System VdomSflow can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VdomSflow can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
@@ -323,7 +329,13 @@ class SystemVdomSflow(pulumi.CustomResource):
 
         ## Import
 
-        System VdomSflow can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VdomSflow can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVdomSflow:SystemVdomSflow labelname SystemVdomSflow

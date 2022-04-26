@@ -10,7 +10,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * WirelessControllerHotspot20 HsProfile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * WirelessControllerHotspot20 HsProfile can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile labelname {{name}}

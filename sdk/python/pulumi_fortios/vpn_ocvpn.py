@@ -600,7 +600,13 @@ class VpnOcvpn(pulumi.CustomResource):
 
         ## Import
 
-        Vpn Ocvpn can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Vpn Ocvpn can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
@@ -639,7 +645,13 @@ class VpnOcvpn(pulumi.CustomResource):
 
         ## Import
 
-        Vpn Ocvpn can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Vpn Ocvpn can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnOcvpn:VpnOcvpn labelname VpnOcvpn

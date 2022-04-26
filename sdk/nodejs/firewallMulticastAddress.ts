@@ -26,7 +26,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Firewall MulticastAddress can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Firewall MulticastAddress can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
@@ -118,7 +124,7 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: FirewallMulticastAddressArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: FirewallMulticastAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallMulticastAddressArgs | FirewallMulticastAddressState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -138,12 +144,6 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
             resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallMulticastAddressArgs | undefined;
-            if ((!args || args.endIp === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'endIp'");
-            }
-            if ((!args || args.startIp === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'startIp'");
-            }
             resourceInputs["associatedInterface"] = args ? args.associatedInterface : undefined;
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
@@ -239,7 +239,7 @@ export interface FirewallMulticastAddressArgs {
     /**
      * Final IPv4 address (inclusive) in the range for the address.
      */
-    endIp: pulumi.Input<string>;
+    endIp?: pulumi.Input<string>;
     /**
      * Tag name.
      */
@@ -247,7 +247,7 @@ export interface FirewallMulticastAddressArgs {
     /**
      * First IPv4 address (inclusive) in the range for the address.
      */
-    startIp: pulumi.Input<string>;
+    startIp?: pulumi.Input<string>;
     /**
      * Broadcast address and subnet.
      */

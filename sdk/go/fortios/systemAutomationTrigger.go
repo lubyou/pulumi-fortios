@@ -43,7 +43,13 @@ import (
 //
 // ## Import
 //
-// System AutomationTrigger can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// System AutomationTrigger can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
@@ -77,6 +83,8 @@ type SystemAutomationTrigger struct {
 	LicenseType pulumi.StringOutput `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid pulumi.IntOutput `pulumi:"logid"`
+	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	LogidBlocks SystemAutomationTriggerLogidBlockArrayOutput `pulumi:"logidBlocks"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Security Rating report.
@@ -153,6 +161,8 @@ type systemAutomationTriggerState struct {
 	LicenseType *string `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid *int `pulumi:"logid"`
+	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	LogidBlocks []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Security Rating report.
@@ -200,6 +210,8 @@ type SystemAutomationTriggerState struct {
 	LicenseType pulumi.StringPtrInput
 	// Log ID to trigger event.
 	Logid pulumi.IntPtrInput
+	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	LogidBlocks SystemAutomationTriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Security Rating report.
@@ -251,6 +263,8 @@ type systemAutomationTriggerArgs struct {
 	LicenseType *string `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid *int `pulumi:"logid"`
+	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	LogidBlocks []SystemAutomationTriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Security Rating report.
@@ -299,6 +313,8 @@ type SystemAutomationTriggerArgs struct {
 	LicenseType pulumi.StringPtrInput
 	// Log ID to trigger event.
 	Logid pulumi.IntPtrInput
+	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	LogidBlocks SystemAutomationTriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Security Rating report.

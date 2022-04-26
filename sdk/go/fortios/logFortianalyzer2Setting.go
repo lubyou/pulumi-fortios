@@ -51,7 +51,13 @@ import (
 //
 // ## Import
 //
-// LogFortianalyzer2 Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// LogFortianalyzer2 Setting can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/logFortianalyzer2Setting:LogFortianalyzer2Setting labelname LogFortianalyzer2Setting
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/logFortianalyzer2Setting:LogFortianalyzer2Setting labelname LogFortianalyzer2Setting

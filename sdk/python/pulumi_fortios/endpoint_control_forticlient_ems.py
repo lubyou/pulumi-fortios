@@ -397,7 +397,13 @@ class EndpointControlForticlientEms(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl ForticlientEms can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        EndpointControl ForticlientEms can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
@@ -430,7 +436,13 @@ class EndpointControlForticlientEms(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl ForticlientEms can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        EndpointControl ForticlientEms can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms labelname {{name}}

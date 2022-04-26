@@ -1087,7 +1087,13 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogFortianalyzer3 OverrideSetting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortianalyzer3 OverrideSetting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortianalyzer3OverrideSetting:LogFortianalyzer3OverrideSetting labelname LogFortianalyzer3OverrideSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortianalyzer3OverrideSetting:LogFortianalyzer3OverrideSetting labelname LogFortianalyzer3OverrideSetting
@@ -1165,7 +1171,13 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogFortianalyzer3 OverrideSetting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortianalyzer3 OverrideSetting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortianalyzer3OverrideSetting:LogFortianalyzer3OverrideSetting labelname LogFortianalyzer3OverrideSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortianalyzer3OverrideSetting:LogFortianalyzer3OverrideSetting labelname LogFortianalyzer3OverrideSetting

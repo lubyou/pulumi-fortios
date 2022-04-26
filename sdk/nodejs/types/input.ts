@@ -13855,7 +13855,7 @@ export interface SystemAutomationStitchDestination {
 
 export interface SystemAutomationTriggerField {
     /**
-     * Entry ID.
+     * Log ID.
      */
     id?: pulumi.Input<number>;
     /**
@@ -13866,6 +13866,13 @@ export interface SystemAutomationTriggerField {
      * Value.
      */
     value?: pulumi.Input<string>;
+}
+
+export interface SystemAutomationTriggerLogidBlock {
+    /**
+     * Log ID.
+     */
+    id?: pulumi.Input<number>;
 }
 
 export interface SystemCentralManagementServerList {

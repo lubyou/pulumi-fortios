@@ -112,7 +112,13 @@ class AntivirusHeuristic(pulumi.CustomResource):
 
         ## Import
 
-        Antivirus Heuristic can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Antivirus Heuristic can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
@@ -145,7 +151,13 @@ class AntivirusHeuristic(pulumi.CustomResource):
 
         ## Import
 
-        Antivirus Heuristic can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Antivirus Heuristic can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/antivirusHeuristic:AntivirusHeuristic labelname AntivirusHeuristic

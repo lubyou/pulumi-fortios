@@ -9,7 +9,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * VpnCertificate Local can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * VpnCertificate Local can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
@@ -173,7 +179,7 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: VpnCertificateLocalArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: VpnCertificateLocalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateLocalArgs | VpnCertificateLocalState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -211,9 +217,6 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateLocalArgs | undefined;
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
             resourceInputs["acmeCaUrl"] = args ? args.acmeCaUrl : undefined;
             resourceInputs["acmeDomain"] = args ? args.acmeDomain : undefined;
             resourceInputs["acmeEmail"] = args ? args.acmeEmail : undefined;
@@ -471,7 +474,7 @@ export interface VpnCertificateLocalArgs {
     /**
      * PEM format key, encrypted with a password.
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
      */

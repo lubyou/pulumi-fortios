@@ -14,7 +14,13 @@ import (
 //
 // ## Import
 //
-// ExtenderController Dataplan can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// ExtenderController Dataplan can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
@@ -24,6 +30,7 @@ import (
 type ExtenderControllerDataplan struct {
 	pulumi.CustomResourceState
 
+	// APN configuration.
 	Apn pulumi.StringOutput `pulumi:"apn"`
 	// Authentication type. Valid values: `none`, `pap`, `chap`.
 	AuthType pulumi.StringOutput `pulumi:"authType"`
@@ -45,7 +52,8 @@ type ExtenderControllerDataplan struct {
 	Overage pulumi.StringOutput `pulumi:"overage"`
 	// Password.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	Pdn      pulumi.StringOutput    `pulumi:"pdn"`
+	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+	Pdn pulumi.StringOutput `pulumi:"pdn"`
 	// Preferred subnet mask (8 - 32).
 	PreferredSubnet pulumi.IntOutput `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
@@ -94,6 +102,7 @@ func GetExtenderControllerDataplan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtenderControllerDataplan resources.
 type extenderControllerDataplanState struct {
+	// APN configuration.
 	Apn *string `pulumi:"apn"`
 	// Authentication type. Valid values: `none`, `pap`, `chap`.
 	AuthType *string `pulumi:"authType"`
@@ -115,7 +124,8 @@ type extenderControllerDataplanState struct {
 	Overage *string `pulumi:"overage"`
 	// Password.
 	Password *string `pulumi:"password"`
-	Pdn      *string `pulumi:"pdn"`
+	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+	Pdn *string `pulumi:"pdn"`
 	// Preferred subnet mask (8 - 32).
 	PreferredSubnet *int `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
@@ -135,6 +145,7 @@ type extenderControllerDataplanState struct {
 }
 
 type ExtenderControllerDataplanState struct {
+	// APN configuration.
 	Apn pulumi.StringPtrInput
 	// Authentication type. Valid values: `none`, `pap`, `chap`.
 	AuthType pulumi.StringPtrInput
@@ -156,7 +167,8 @@ type ExtenderControllerDataplanState struct {
 	Overage pulumi.StringPtrInput
 	// Password.
 	Password pulumi.StringPtrInput
-	Pdn      pulumi.StringPtrInput
+	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+	Pdn pulumi.StringPtrInput
 	// Preferred subnet mask (8 - 32).
 	PreferredSubnet pulumi.IntPtrInput
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
@@ -180,6 +192,7 @@ func (ExtenderControllerDataplanState) ElementType() reflect.Type {
 }
 
 type extenderControllerDataplanArgs struct {
+	// APN configuration.
 	Apn *string `pulumi:"apn"`
 	// Authentication type. Valid values: `none`, `pap`, `chap`.
 	AuthType *string `pulumi:"authType"`
@@ -201,7 +214,8 @@ type extenderControllerDataplanArgs struct {
 	Overage *string `pulumi:"overage"`
 	// Password.
 	Password *string `pulumi:"password"`
-	Pdn      *string `pulumi:"pdn"`
+	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+	Pdn *string `pulumi:"pdn"`
 	// Preferred subnet mask (8 - 32).
 	PreferredSubnet *int `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
@@ -222,6 +236,7 @@ type extenderControllerDataplanArgs struct {
 
 // The set of arguments for constructing a ExtenderControllerDataplan resource.
 type ExtenderControllerDataplanArgs struct {
+	// APN configuration.
 	Apn pulumi.StringPtrInput
 	// Authentication type. Valid values: `none`, `pap`, `chap`.
 	AuthType pulumi.StringPtrInput
@@ -243,7 +258,8 @@ type ExtenderControllerDataplanArgs struct {
 	Overage pulumi.StringPtrInput
 	// Password.
 	Password pulumi.StringPtrInput
-	Pdn      pulumi.StringPtrInput
+	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+	Pdn pulumi.StringPtrInput
 	// Preferred subnet mask (8 - 32).
 	PreferredSubnet pulumi.IntPtrInput
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.

@@ -138,7 +138,13 @@ class RouterBfd(pulumi.CustomResource):
 
         ## Import
 
-        Router Bfd can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router Bfd can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerBfd:RouterBfd labelname RouterBfd
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerBfd:RouterBfd labelname RouterBfd
@@ -163,7 +169,13 @@ class RouterBfd(pulumi.CustomResource):
 
         ## Import
 
-        Router Bfd can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router Bfd can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerBfd:RouterBfd labelname RouterBfd
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerBfd:RouterBfd labelname RouterBfd

@@ -87,6 +87,10 @@ export interface GetSystemAutomationTriggerResult {
      */
     readonly logid: number;
     /**
+     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     */
+    readonly logidBlocks: outputs.GetSystemAutomationTriggerLogidBlock[];
+    /**
      * Name.
      */
     readonly name: string;

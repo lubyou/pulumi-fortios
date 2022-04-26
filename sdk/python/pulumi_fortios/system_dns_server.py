@@ -213,7 +213,13 @@ class SystemDnsServer(pulumi.CustomResource):
 
         ## Import
 
-        System DnsServer can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System DnsServer can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
@@ -251,7 +257,13 @@ class SystemDnsServer(pulumi.CustomResource):
 
         ## Import
 
-        System DnsServer can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System DnsServer can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemDnsServer:SystemDnsServer labelname {{name}}

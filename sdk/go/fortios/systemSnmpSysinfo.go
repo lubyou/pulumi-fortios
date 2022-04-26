@@ -40,7 +40,13 @@ import (
 //
 // ## Import
 //
-// SystemSnmp Sysinfo can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// SystemSnmp Sysinfo can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo labelname SystemSnmpSysinfo

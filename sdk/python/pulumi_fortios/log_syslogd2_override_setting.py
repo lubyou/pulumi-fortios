@@ -666,7 +666,13 @@ class LogSyslogd2OverrideSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd2 OverrideSetting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd2 OverrideSetting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogd2OverrideSetting:LogSyslogd2OverrideSetting labelname LogSyslogd2OverrideSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogd2OverrideSetting:LogSyslogd2OverrideSetting labelname LogSyslogd2OverrideSetting
@@ -707,7 +713,13 @@ class LogSyslogd2OverrideSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogSyslogd2 OverrideSetting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogSyslogd2 OverrideSetting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logSyslogd2OverrideSetting:LogSyslogd2OverrideSetting labelname LogSyslogd2OverrideSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logSyslogd2OverrideSetting:LogSyslogd2OverrideSetting labelname LogSyslogd2OverrideSetting

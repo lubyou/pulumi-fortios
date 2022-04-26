@@ -316,7 +316,13 @@ class WanoptCacheService(pulumi.CustomResource):
 
         ## Import
 
-        Wanopt CacheService can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Wanopt CacheService can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService
@@ -359,7 +365,13 @@ class WanoptCacheService(pulumi.CustomResource):
 
         ## Import
 
-        Wanopt CacheService can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Wanopt CacheService can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wanoptCacheService:WanoptCacheService labelname WanoptCacheService

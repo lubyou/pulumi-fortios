@@ -552,7 +552,13 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
 
         ## Import
 
-        Firewall LocalInPolicy6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall LocalInPolicy6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallLocalInPolicy6:FirewallLocalInPolicy6 labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallLocalInPolicy6:FirewallLocalInPolicy6 labelname {{policyid}}
@@ -612,7 +618,13 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
 
         ## Import
 
-        Firewall LocalInPolicy6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall LocalInPolicy6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallLocalInPolicy6:FirewallLocalInPolicy6 labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallLocalInPolicy6:FirewallLocalInPolicy6 labelname {{policyid}}

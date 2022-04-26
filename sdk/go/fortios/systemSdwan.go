@@ -10,11 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure redundant internet connections using SD-WAN (formerly virtual WAN link). Applies to FortiOS Version `>= 6.4.2`.
+// Configure redundant internet connections using SD-WAN (formerly virtual WAN link). Applies to FortiOS Version `>= 6.4.1`.
 //
 // ## Import
 //
-// System Sdwan can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// System Sdwan can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemSdwan:SystemSdwan labelname SystemSdwan
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemSdwan:SystemSdwan labelname SystemSdwan

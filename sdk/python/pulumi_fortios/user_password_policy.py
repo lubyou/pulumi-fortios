@@ -213,7 +213,13 @@ class UserPasswordPolicy(pulumi.CustomResource):
 
         ## Import
 
-        User PasswordPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        User PasswordPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
@@ -251,7 +257,13 @@ class UserPasswordPolicy(pulumi.CustomResource):
 
         ## Import
 
-        User PasswordPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        User PasswordPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/userPasswordPolicy:UserPasswordPolicy labelname {{name}}

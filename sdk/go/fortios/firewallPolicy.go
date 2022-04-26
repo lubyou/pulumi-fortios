@@ -115,7 +115,13 @@ import (
 //
 // ## Import
 //
-// Firewall Policy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Firewall Policy can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
@@ -134,19 +140,19 @@ type FirewallPolicy struct {
 	// Application group names. The structure of `appGroup` block is documented below.
 	AppGroups FirewallPolicyAppGroupArrayOutput `pulumi:"appGroups"`
 	// Name of an existing Application list.
-	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
+	ApplicationList pulumi.StringPtrOutput `pulumi:"applicationList"`
 	// Application ID list. The structure of `application` block is documented below.
 	Applications FirewallPolicyApplicationArrayOutput `pulumi:"applications"`
 	// HTTPS server certificate for policy authentication.
-	AuthCert pulumi.StringOutput `pulumi:"authCert"`
+	AuthCert pulumi.StringPtrOutput `pulumi:"authCert"`
 	// Enable/disable authentication-based routing. Valid values: `enable`, `disable`.
 	AuthPath pulumi.StringOutput `pulumi:"authPath"`
 	// HTTP-to-HTTPS redirect address for firewall authentication.
-	AuthRedirectAddr pulumi.StringOutput `pulumi:"authRedirectAddr"`
+	AuthRedirectAddr pulumi.StringPtrOutput `pulumi:"authRedirectAddr"`
 	// Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
 	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
 	// Name of an existing Antivirus profile.
-	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
+	AvProfile pulumi.StringPtrOutput `pulumi:"avProfile"`
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification pulumi.StringOutput `pulumi:"blockNotification"`
 	// Enable to exempt some users from the captive portal. Valid values: `enable`, `disable`.
@@ -154,13 +160,13 @@ type FirewallPolicy struct {
 	// Enable/disable capture packets. Valid values: `enable`, `disable`.
 	CapturePacket pulumi.StringOutput `pulumi:"capturePacket"`
 	// Name of an existing CIFS profile.
-	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
+	CifsProfile pulumi.StringPtrOutput `pulumi:"cifsProfile"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Custom fields to append to log messages for this policy. The structure of `customLogFields` block is documented below.
 	CustomLogFields FirewallPolicyCustomLogFieldArrayOutput `pulumi:"customLogFields"`
 	// Decrypted traffic mirror.
-	DecryptedTrafficMirror pulumi.StringOutput `pulumi:"decryptedTrafficMirror"`
+	DecryptedTrafficMirror pulumi.StringPtrOutput `pulumi:"decryptedTrafficMirror"`
 	// Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
 	DelayTcpNpuSession pulumi.StringOutput `pulumi:"delayTcpNpuSession"`
 	// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
@@ -176,9 +182,9 @@ type FirewallPolicy struct {
 	// Enable/disable user authentication disclaimer. Valid values: `enable`, `disable`.
 	Disclaimer pulumi.StringOutput `pulumi:"disclaimer"`
 	// Name of an existing DLP sensor.
-	DlpSensor pulumi.StringOutput `pulumi:"dlpSensor"`
+	DlpSensor pulumi.StringPtrOutput `pulumi:"dlpSensor"`
 	// Name of an existing DNS filter profile.
-	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
+	DnsfilterProfile pulumi.StringPtrOutput `pulumi:"dnsfilterProfile"`
 	// Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
 	Dsri pulumi.StringOutput `pulumi:"dsri"`
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
@@ -196,19 +202,19 @@ type FirewallPolicy struct {
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect pulumi.StringOutput `pulumi:"emailCollect"`
 	// Name of an existing email filter profile.
-	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
+	EmailfilterProfile pulumi.StringPtrOutput `pulumi:"emailfilterProfile"`
 	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
 	Fec pulumi.StringOutput `pulumi:"fec"`
 	// Name of an existing file-filter profile.
-	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
+	FileFilterProfile pulumi.StringPtrOutput `pulumi:"fileFilterProfile"`
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
 	FirewallSessionDirty pulumi.StringOutput `pulumi:"firewallSessionDirty"`
 	// Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
 	// Enable/disable Fortinet Single Sign-On. Valid values: `enable`, `disable`.
-	Fsso pulumi.StringOutput `pulumi:"fsso"`
+	Fsso pulumi.StringPtrOutput `pulumi:"fsso"`
 	// FSSO agent to use for NTLM authentication.
-	FssoAgentForNtlm pulumi.StringOutput `pulumi:"fssoAgentForNtlm"`
+	FssoAgentForNtlm pulumi.StringPtrOutput `pulumi:"fssoAgentForNtlm"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups FirewallPolicyFssoGroupArrayOutput `pulumi:"fssoGroups"`
 	// Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
@@ -216,15 +222,15 @@ type FirewallPolicy struct {
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringOutput `pulumi:"geoipMatch"`
 	// Label for the policy that appears when the GUI is in Global View mode.
-	GlobalLabel pulumi.StringOutput `pulumi:"globalLabel"`
+	GlobalLabel pulumi.StringPtrOutput `pulumi:"globalLabel"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups FirewallPolicyGroupArrayOutput `pulumi:"groups"`
 	// Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
 	HttpPolicyRedirect pulumi.StringOutput `pulumi:"httpPolicyRedirect"`
 	// Name of an existing ICAP profile.
-	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
+	IcapProfile pulumi.StringPtrOutput `pulumi:"icapProfile"`
 	// Name of identity-based routing rule.
-	IdentityBasedRoute pulumi.StringOutput `pulumi:"identityBasedRoute"`
+	IdentityBasedRoute pulumi.StringPtrOutput `pulumi:"identityBasedRoute"`
 	// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
 	Inbound pulumi.StringOutput `pulumi:"inbound"`
 	// Policy inspection mode (Flow/proxy). Default is Flow mode. Valid values: `proxy`, `flow`.
@@ -260,11 +266,11 @@ type FirewallPolicy struct {
 	// Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringOutput `pulumi:"ippool"`
 	// Name of an existing IPS sensor.
-	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	IpsSensor pulumi.StringPtrOutput `pulumi:"ipsSensor"`
 	// Label for the policy that appears when the GUI is in Section View mode.
-	Label pulumi.StringOutput `pulumi:"label"`
+	Label pulumi.StringPtrOutput `pulumi:"label"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
-	LearningMode pulumi.StringOutput `pulumi:"learningMode"`
+	LearningMode pulumi.StringPtrOutput `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
@@ -300,7 +306,7 @@ type FirewallPolicy struct {
 	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
 	PassiveWanHealthMeasurement pulumi.StringOutput `pulumi:"passiveWanHealthMeasurement"`
 	// Per-IP traffic shaper.
-	PerIpShaper pulumi.StringOutput `pulumi:"perIpShaper"`
+	PerIpShaper pulumi.StringPtrOutput `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
 	PermitAnyHost pulumi.StringOutput `pulumi:"permitAnyHost"`
 	// Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
@@ -312,7 +318,7 @@ type FirewallPolicy struct {
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames FirewallPolicyPoolnameArrayOutput `pulumi:"poolnames"`
 	// Name of profile group.
-	ProfileGroup pulumi.StringOutput `pulumi:"profileGroup"`
+	ProfileGroup pulumi.StringPtrOutput `pulumi:"profileGroup"`
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -320,27 +326,27 @@ type FirewallPolicy struct {
 	// Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. Valid values: `enable`, `disable`.
 	RadiusMacAuthBypass pulumi.StringOutput `pulumi:"radiusMacAuthBypass"`
 	// URL users are directed to after seeing and accepting the disclaimer or authenticating.
-	RedirectUrl pulumi.StringOutput `pulumi:"redirectUrl"`
+	RedirectUrl pulumi.StringPtrOutput `pulumi:"redirectUrl"`
 	// Override the default replacement message group for this policy.
-	ReplacemsgOverrideGroup pulumi.StringOutput `pulumi:"replacemsgOverrideGroup"`
+	ReplacemsgOverrideGroup pulumi.StringPtrOutput `pulumi:"replacemsgOverrideGroup"`
 	// Direction of the initial traffic for reputation to take effect. Valid values: `source`, `destination`.
 	ReputationDirection pulumi.StringOutput `pulumi:"reputationDirection"`
 	// Minimum Reputation to take action.
 	ReputationMinimum pulumi.IntOutput `pulumi:"reputationMinimum"`
 	// Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
-	Rsso pulumi.StringOutput `pulumi:"rsso"`
+	Rsso pulumi.StringPtrOutput `pulumi:"rsso"`
 	// Address names if this is an RTP NAT policy. The structure of `rtpAddr` block is documented below.
 	RtpAddrs FirewallPolicyRtpAddrArrayOutput `pulumi:"rtpAddrs"`
 	// Enable Real Time Protocol (RTP) NAT. Valid values: `disable`, `enable`.
 	RtpNat pulumi.StringOutput `pulumi:"rtpNat"`
 	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
-	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
+	ScanBotnetConnections pulumi.StringPtrOutput `pulumi:"scanBotnetConnections"`
 	// Schedule name.(Default is `always`)
 	Schedule pulumi.StringPtrOutput `pulumi:"schedule"`
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout pulumi.StringOutput `pulumi:"scheduleTimeout"`
 	// Name of an existing SCTP filter profile.
-	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
+	SctpFilterProfile pulumi.StringPtrOutput `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringOutput `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -348,13 +354,13 @@ type FirewallPolicy struct {
 	// Service and service group names. The structure of `service` block is documented below.
 	Services FirewallPolicyServiceArrayOutput `pulumi:"services"`
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
-	SessionTtl pulumi.IntOutput `pulumi:"sessionTtl"`
+	SessionTtl pulumi.IntPtrOutput `pulumi:"sessionTtl"`
 	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
 	SgtCheck pulumi.StringOutput `pulumi:"sgtCheck"`
 	// Security group tags. The structure of `sgt` block is documented below.
 	Sgts FirewallPolicySgtArrayOutput `pulumi:"sgts"`
 	// Name of an existing Spam filter profile.
-	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
+	SpamfilterProfile pulumi.StringPtrOutput `pulumi:"spamfilterProfile"`
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
 	SrcVendorMacs FirewallPolicySrcVendorMacArrayOutput `pulumi:"srcVendorMacs"`
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
@@ -366,11 +372,11 @@ type FirewallPolicy struct {
 	// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
 	Srcintfs FirewallPolicySrcintfArrayOutput `pulumi:"srcintfs"`
 	// Name of an existing SSH filter profile.
-	SshFilterProfile pulumi.StringOutput `pulumi:"sshFilterProfile"`
+	SshFilterProfile pulumi.StringPtrOutput `pulumi:"sshFilterProfile"`
 	// Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
 	SshPolicyRedirect pulumi.StringOutput `pulumi:"sshPolicyRedirect"`
 	// Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
-	SslMirror pulumi.StringOutput `pulumi:"sslMirror"`
+	SslMirror pulumi.StringPtrOutput `pulumi:"sslMirror"`
 	// SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
 	SslMirrorIntfs FirewallPolicySslMirrorIntfArrayOutput `pulumi:"sslMirrorIntfs"`
 	// Name of an existing SSL SSH profile.
@@ -392,9 +398,9 @@ type FirewallPolicy struct {
 	// Enable negated TOS match. Valid values: `enable`, `disable`.
 	TosNegate pulumi.StringOutput `pulumi:"tosNegate"`
 	// Traffic shaper.
-	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
+	TrafficShaper pulumi.StringPtrOutput `pulumi:"trafficShaper"`
 	// Reverse traffic shaper.
-	TrafficShaperReverse pulumi.StringOutput `pulumi:"trafficShaperReverse"`
+	TrafficShaperReverse pulumi.StringPtrOutput `pulumi:"trafficShaperReverse"`
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories FirewallPolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
@@ -406,19 +412,19 @@ type FirewallPolicy struct {
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
-	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
+	VideofilterProfile pulumi.StringPtrOutput `pulumi:"videofilterProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntOutput `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosRev pulumi.IntOutput `pulumi:"vlanCosRev"`
 	// Set VLAN filters.
-	VlanFilter pulumi.StringOutput `pulumi:"vlanFilter"`
+	VlanFilter pulumi.StringPtrOutput `pulumi:"vlanFilter"`
 	// Name of an existing VoIP profile.
-	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
+	VoipProfile pulumi.StringPtrOutput `pulumi:"voipProfile"`
 	// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
-	Vpntunnel pulumi.StringOutput `pulumi:"vpntunnel"`
+	Vpntunnel pulumi.StringPtrOutput `pulumi:"vpntunnel"`
 	// Name of an existing Web application firewall profile.
-	WafProfile pulumi.StringOutput `pulumi:"wafProfile"`
+	WafProfile pulumi.StringPtrOutput `pulumi:"wafProfile"`
 	// Enable/disable WAN optimization. Valid values: `enable`, `disable`.
 	Wanopt pulumi.StringOutput `pulumi:"wanopt"`
 	// WAN optimization auto-detection mode. Valid values: `active`, `passive`, `off`.
@@ -426,9 +432,9 @@ type FirewallPolicy struct {
 	// WAN optimization passive mode options. This option decides what IP address will be used to connect server. Valid values: `default`, `transparent`, `non-transparent`.
 	WanoptPassiveOpt pulumi.StringOutput `pulumi:"wanoptPassiveOpt"`
 	// WAN optimization peer.
-	WanoptPeer pulumi.StringOutput `pulumi:"wanoptPeer"`
+	WanoptPeer pulumi.StringPtrOutput `pulumi:"wanoptPeer"`
 	// WAN optimization profile.
-	WanoptProfile pulumi.StringOutput `pulumi:"wanoptProfile"`
+	WanoptProfile pulumi.StringPtrOutput `pulumi:"wanoptProfile"`
 	// Enable/disable forwarding traffic matching this policy to a configured WCCP server. Valid values: `enable`, `disable`.
 	Wccp pulumi.StringOutput `pulumi:"wccp"`
 	// Enable/disable web cache. Valid values: `enable`, `disable`.
@@ -436,13 +442,13 @@ type FirewallPolicy struct {
 	// Enable/disable web cache for HTTPS. Valid values: `disable`, `enable`.
 	WebcacheHttps pulumi.StringOutput `pulumi:"webcacheHttps"`
 	// Name of an existing Web filter profile.
-	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
+	WebfilterProfile pulumi.StringPtrOutput `pulumi:"webfilterProfile"`
 	// Web proxy forward server name.
-	WebproxyForwardServer pulumi.StringOutput `pulumi:"webproxyForwardServer"`
+	WebproxyForwardServer pulumi.StringPtrOutput `pulumi:"webproxyForwardServer"`
 	// Webproxy profile name.
-	WebproxyProfile pulumi.StringOutput `pulumi:"webproxyProfile"`
+	WebproxyProfile pulumi.StringPtrOutput `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
-	Wsso pulumi.StringOutput `pulumi:"wsso"`
+	Wsso pulumi.StringPtrOutput `pulumi:"wsso"`
 	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
 	ZtnaEmsTags FirewallPolicyZtnaEmsTagArrayOutput `pulumi:"ztnaEmsTags"`
 	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.

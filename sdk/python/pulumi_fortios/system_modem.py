@@ -1588,7 +1588,13 @@ class SystemModem(pulumi.CustomResource):
 
         ## Import
 
-        System Modem can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System Modem can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
@@ -1657,7 +1663,13 @@ class SystemModem(pulumi.CustomResource):
 
         ## Import
 
-        System Modem can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System Modem can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemModem:SystemModem labelname SystemModem

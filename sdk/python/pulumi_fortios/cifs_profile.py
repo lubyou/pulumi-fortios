@@ -266,11 +266,17 @@ class CifsProfile(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
+        Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
 
         ## Import
 
-        Cifs Profile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Cifs Profile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
@@ -295,11 +301,17 @@ class CifsProfile(pulumi.CustomResource):
                  args: Optional[CifsProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
+        Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
 
         ## Import
 
-        Cifs Profile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Cifs Profile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/cifsProfile:CifsProfile labelname {{name}}

@@ -11,11 +11,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Replacement messages. Applies to FortiOS Version `<= 6.4.0`.
+// Replacement messages. Applies to FortiOS Version `<= 6.4.1`.
 //
 // ## Import
 //
-// SystemReplacemsg DeviceDetectionPortal can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// SystemReplacemsg DeviceDetectionPortal can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal labelname {{msg_type}}

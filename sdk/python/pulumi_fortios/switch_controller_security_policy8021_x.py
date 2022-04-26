@@ -789,7 +789,13 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
 
         ## Import
 
-        SwitchControllerSecurityPolicy 8021X can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchControllerSecurityPolicy 8021X can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}
@@ -857,7 +863,13 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
 
         ## Import
 
-        SwitchControllerSecurityPolicy 8021X can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchControllerSecurityPolicy 8021X can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X labelname {{name}}

@@ -249,7 +249,13 @@ class ReportSetting(pulumi.CustomResource):
 
         ## Import
 
-        Report Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Report Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
@@ -291,7 +297,13 @@ class ReportSetting(pulumi.CustomResource):
 
         ## Import
 
-        Report Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Report Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/reportSetting:ReportSetting labelname ReportSetting

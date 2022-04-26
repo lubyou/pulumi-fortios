@@ -184,7 +184,13 @@ class WirelessControllerHotspot20AnqpVenueName(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 AnqpVenueName can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 AnqpVenueName can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}
@@ -223,7 +229,13 @@ class WirelessControllerHotspot20AnqpVenueName(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 AnqpVenueName can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 AnqpVenueName can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName labelname {{name}}

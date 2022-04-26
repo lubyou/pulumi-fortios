@@ -15,13 +15,13 @@ __all__ = ['FirewallMulticastAddressArgs', 'FirewallMulticastAddress']
 @pulumi.input_type
 class FirewallMulticastAddressArgs:
     def __init__(__self__, *,
-                 end_ip: pulumi.Input[str],
-                 start_ip: pulumi.Input[str],
                  associated_interface: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 end_ip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 start_ip: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallMulticastAddressTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -29,21 +29,19 @@ class FirewallMulticastAddressArgs:
                  visibility: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallMulticastAddress resource.
-        :param pulumi.Input[str] end_ip: Final IPv4 address (inclusive) in the range for the address.
-        :param pulumi.Input[str] start_ip: First IPv4 address (inclusive) in the range for the address.
         :param pulumi.Input[str] associated_interface: Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] end_ip: Final IPv4 address (inclusive) in the range for the address.
         :param pulumi.Input[str] name: Tag name.
+        :param pulumi.Input[str] start_ip: First IPv4 address (inclusive) in the range for the address.
         :param pulumi.Input[str] subnet: Broadcast address and subnet.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallMulticastAddressTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] type: Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] visibility: Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
         """
-        pulumi.set(__self__, "end_ip", end_ip)
-        pulumi.set(__self__, "start_ip", start_ip)
         if associated_interface is not None:
             pulumi.set(__self__, "associated_interface", associated_interface)
         if color is not None:
@@ -52,8 +50,12 @@ class FirewallMulticastAddressArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if end_ip is not None:
+            pulumi.set(__self__, "end_ip", end_ip)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if start_ip is not None:
+            pulumi.set(__self__, "start_ip", start_ip)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if taggings is not None:
@@ -64,30 +66,6 @@ class FirewallMulticastAddressArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if visibility is not None:
             pulumi.set(__self__, "visibility", visibility)
-
-    @property
-    @pulumi.getter(name="endIp")
-    def end_ip(self) -> pulumi.Input[str]:
-        """
-        Final IPv4 address (inclusive) in the range for the address.
-        """
-        return pulumi.get(self, "end_ip")
-
-    @end_ip.setter
-    def end_ip(self, value: pulumi.Input[str]):
-        pulumi.set(self, "end_ip", value)
-
-    @property
-    @pulumi.getter(name="startIp")
-    def start_ip(self) -> pulumi.Input[str]:
-        """
-        First IPv4 address (inclusive) in the range for the address.
-        """
-        return pulumi.get(self, "start_ip")
-
-    @start_ip.setter
-    def start_ip(self, value: pulumi.Input[str]):
-        pulumi.set(self, "start_ip", value)
 
     @property
     @pulumi.getter(name="associatedInterface")
@@ -138,6 +116,18 @@ class FirewallMulticastAddressArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="endIp")
+    def end_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Final IPv4 address (inclusive) in the range for the address.
+        """
+        return pulumi.get(self, "end_ip")
+
+    @end_ip.setter
+    def end_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_ip", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -148,6 +138,18 @@ class FirewallMulticastAddressArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="startIp")
+    def start_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        First IPv4 address (inclusive) in the range for the address.
+        """
+        return pulumi.get(self, "start_ip")
+
+    @start_ip.setter
+    def start_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_ip", value)
 
     @property
     @pulumi.getter
@@ -448,7 +450,13 @@ class FirewallMulticastAddress(pulumi.CustomResource):
 
         ## Import
 
-        Firewall MulticastAddress can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall MulticastAddress can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
@@ -475,7 +483,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: FirewallMulticastAddressArgs,
+                 args: Optional[FirewallMulticastAddressArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Configure multicast addresses.
@@ -497,7 +505,13 @@ class FirewallMulticastAddress(pulumi.CustomResource):
 
         ## Import
 
-        Firewall MulticastAddress can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall MulticastAddress can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallMulticastAddress:FirewallMulticastAddress labelname {{name}}
@@ -550,12 +564,8 @@ class FirewallMulticastAddress(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
-            if end_ip is None and not opts.urn:
-                raise TypeError("Missing required property 'end_ip'")
             __props__.__dict__["end_ip"] = end_ip
             __props__.__dict__["name"] = name
-            if start_ip is None and not opts.urn:
-                raise TypeError("Missing required property 'start_ip'")
             __props__.__dict__["start_ip"] = start_ip
             __props__.__dict__["subnet"] = subnet
             __props__.__dict__["taggings"] = taggings

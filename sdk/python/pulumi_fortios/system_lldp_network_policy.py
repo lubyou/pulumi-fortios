@@ -411,7 +411,13 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
 
         ## Import
 
-        SystemLldp NetworkPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SystemLldp NetworkPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}
@@ -453,7 +459,13 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
 
         ## Import
 
-        SystemLldp NetworkPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SystemLldp NetworkPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy labelname {{name}}

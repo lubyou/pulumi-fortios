@@ -27,6 +27,7 @@ class SystemAutomationTriggerArgs:
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
+                 logid_blocks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
@@ -51,6 +52,7 @@ class SystemAutomationTriggerArgs:
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -86,6 +88,8 @@ class SystemAutomationTriggerArgs:
             pulumi.set(__self__, "license_type", license_type)
         if logid is not None:
             pulumi.set(__self__, "logid", logid)
+        if logid_blocks is not None:
+            pulumi.set(__self__, "logid_blocks", logid_blocks)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if report_type is not None:
@@ -250,6 +254,18 @@ class SystemAutomationTriggerArgs:
     @logid.setter
     def logid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "logid", value)
+
+    @property
+    @pulumi.getter(name="logidBlocks")
+    def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]]:
+        """
+        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        """
+        return pulumi.get(self, "logid_blocks")
+
+    @logid_blocks.setter
+    def logid_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]]):
+        pulumi.set(self, "logid_blocks", value)
 
     @property
     @pulumi.getter
@@ -387,6 +403,7 @@ class _SystemAutomationTriggerState:
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
+                 logid_blocks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
@@ -411,6 +428,7 @@ class _SystemAutomationTriggerState:
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -446,6 +464,8 @@ class _SystemAutomationTriggerState:
             pulumi.set(__self__, "license_type", license_type)
         if logid is not None:
             pulumi.set(__self__, "logid", logid)
+        if logid_blocks is not None:
+            pulumi.set(__self__, "logid_blocks", logid_blocks)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if report_type is not None:
@@ -610,6 +630,18 @@ class _SystemAutomationTriggerState:
     @logid.setter
     def logid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "logid", value)
+
+    @property
+    @pulumi.getter(name="logidBlocks")
+    def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]]:
+        """
+        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        """
+        return pulumi.get(self, "logid_blocks")
+
+    @logid_blocks.setter
+    def logid_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerLogidBlockArgs']]]]):
+        pulumi.set(self, "logid_blocks", value)
 
     @property
     @pulumi.getter
@@ -749,6 +781,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
+                 logid_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerLogidBlockArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
@@ -781,7 +814,13 @@ class SystemAutomationTrigger(pulumi.CustomResource):
 
         ## Import
 
-        System AutomationTrigger can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System AutomationTrigger can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
@@ -803,6 +842,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerLogidBlockArgs']]]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -841,7 +881,13 @@ class SystemAutomationTrigger(pulumi.CustomResource):
 
         ## Import
 
-        System AutomationTrigger can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System AutomationTrigger can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
@@ -876,6 +922,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
+                 logid_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerLogidBlockArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
@@ -912,6 +959,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             __props__.__dict__["ioc_level"] = ioc_level
             __props__.__dict__["license_type"] = license_type
             __props__.__dict__["logid"] = logid
+            __props__.__dict__["logid_blocks"] = logid_blocks
             __props__.__dict__["name"] = name
             __props__.__dict__["report_type"] = report_type
             __props__.__dict__["serial"] = serial
@@ -944,6 +992,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             ioc_level: Optional[pulumi.Input[str]] = None,
             license_type: Optional[pulumi.Input[str]] = None,
             logid: Optional[pulumi.Input[int]] = None,
+            logid_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerLogidBlockArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             report_type: Optional[pulumi.Input[str]] = None,
             serial: Optional[pulumi.Input[str]] = None,
@@ -973,6 +1022,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerLogidBlockArgs']]]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -1000,6 +1050,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         __props__.__dict__["ioc_level"] = ioc_level
         __props__.__dict__["license_type"] = license_type
         __props__.__dict__["logid"] = logid
+        __props__.__dict__["logid_blocks"] = logid_blocks
         __props__.__dict__["name"] = name
         __props__.__dict__["report_type"] = report_type
         __props__.__dict__["serial"] = serial
@@ -1107,6 +1158,14 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         Log ID to trigger event.
         """
         return pulumi.get(self, "logid")
+
+    @property
+    @pulumi.getter(name="logidBlocks")
+    def logid_blocks(self) -> pulumi.Output[Optional[Sequence['outputs.SystemAutomationTriggerLogidBlock']]]:
+        """
+        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        """
+        return pulumi.get(self, "logid_blocks")
 
     @property
     @pulumi.getter

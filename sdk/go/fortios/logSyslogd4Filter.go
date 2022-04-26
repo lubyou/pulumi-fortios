@@ -47,7 +47,13 @@ import (
 //
 // ## Import
 //
-// LogSyslogd4 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// LogSyslogd4 Filter can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/logSyslogd4Filter:LogSyslogd4Filter labelname LogSyslogd4Filter
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/logSyslogd4Filter:LogSyslogd4Filter labelname LogSyslogd4Filter

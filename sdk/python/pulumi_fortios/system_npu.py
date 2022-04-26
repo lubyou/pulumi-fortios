@@ -699,7 +699,13 @@ class SystemNpu(pulumi.CustomResource):
 
         ## Import
 
-        System Npu can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System Npu can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu
@@ -741,7 +747,13 @@ class SystemNpu(pulumi.CustomResource):
 
         ## Import
 
-        System Npu can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System Npu can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemNpu:SystemNpu labelname SystemNpu

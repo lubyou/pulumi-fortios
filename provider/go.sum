@@ -242,8 +242,8 @@ github.com/form3tech-oss/jwt-go v3.2.2+incompatible h1:TcekIExNqud5crz4xD2pavyTg
 github.com/form3tech-oss/jwt-go v3.2.2+incompatible/go.mod h1:pbq4aXjuKjdthFRnoDwaVPLA+WlJuPGy+QneDUgJi2k=
 github.com/fortinetdev/forti-sdk-go v1.6.0 h1:ZvxYM4G0ucRTwSYdS5IpVhnNx6MjUpt6p3OeZTHUNxs=
 github.com/fortinetdev/forti-sdk-go v1.6.0/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
-github.com/fortinetdev/terraform-provider-fortios v1.14.0 h1:4tGSL4TpUpQixeTjQ8Tgi6RVfAnrBcCo+tT+De1IrLg=
-github.com/fortinetdev/terraform-provider-fortios v1.14.0/go.mod h1:X55Ekvcno/xWr3rMUSUtDx7DeWW20jMlKsbvbJ6BOJE=
+github.com/fortinetdev/terraform-provider-fortios v1.14.1 h1:GEjiAdbJwmvIqrubg1b6gQXR5H8iM4YLePeK7k9Kmh4=
+github.com/fortinetdev/terraform-provider-fortios v1.14.1/go.mod h1:X55Ekvcno/xWr3rMUSUtDx7DeWW20jMlKsbvbJ6BOJE=
 github.com/fortytw2/leaktest v1.3.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
 github.com/frankban/quicktest v1.10.0/go.mod h1:ui7WezCLWMWxVWr1GETZY3smRy0G4KWq9vcPtJmFl7Y=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=

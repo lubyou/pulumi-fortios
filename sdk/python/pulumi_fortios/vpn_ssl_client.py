@@ -532,7 +532,13 @@ class VpnSslClient(pulumi.CustomResource):
 
         ## Import
 
-        VpnSsl Client can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnSsl Client can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
@@ -569,7 +575,13 @@ class VpnSslClient(pulumi.CustomResource):
 
         ## Import
 
-        VpnSsl Client can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnSsl Client can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnSslClient:VpnSslClient labelname {{name}}

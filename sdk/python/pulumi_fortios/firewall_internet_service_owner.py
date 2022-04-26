@@ -136,7 +136,13 @@ class FirewallInternetServiceOwner(pulumi.CustomResource):
 
         ## Import
 
-        Firewall InternetServiceOwner can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall InternetServiceOwner can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
@@ -161,7 +167,13 @@ class FirewallInternetServiceOwner(pulumi.CustomResource):
 
         ## Import
 
-        Firewall InternetServiceOwner can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall InternetServiceOwner can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner labelname {{fosid}}

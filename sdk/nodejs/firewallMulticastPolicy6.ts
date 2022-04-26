@@ -35,7 +35,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Firewall MulticastPolicy6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Firewall MulticastPolicy6 can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6 labelname {{fosid}}

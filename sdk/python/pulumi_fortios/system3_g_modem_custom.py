@@ -334,7 +334,13 @@ class System3GModemCustom(pulumi.CustomResource):
 
         ## Import
 
-        System3GModem Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System3GModem Custom can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
@@ -365,7 +371,13 @@ class System3GModemCustom(pulumi.CustomResource):
 
         ## Import
 
-        System3GModem Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System3GModem Custom can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/system3GModemCustom:System3GModemCustom labelname {{fosid}}

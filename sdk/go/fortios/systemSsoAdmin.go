@@ -43,7 +43,13 @@ import (
 //
 // ## Import
 //
-// System SsoAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// System SsoAdmin can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
@@ -57,6 +63,8 @@ type SystemSsoAdmin struct {
 	Accprofile pulumi.StringOutput `pulumi:"accprofile"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// The FortiOS version to ignore release overview prompt for.
+	GuiIgnoreReleaseOverviewVersion pulumi.StringOutput `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	// Virtual domain name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -102,6 +110,8 @@ type systemSsoAdminState struct {
 	Accprofile *string `pulumi:"accprofile"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// The FortiOS version to ignore release overview prompt for.
+	GuiIgnoreReleaseOverviewVersion *string `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	// Virtual domain name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -115,6 +125,8 @@ type SystemSsoAdminState struct {
 	Accprofile pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// The FortiOS version to ignore release overview prompt for.
+	GuiIgnoreReleaseOverviewVersion pulumi.StringPtrInput
 	// Virtual domain name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -132,6 +144,8 @@ type systemSsoAdminArgs struct {
 	Accprofile string `pulumi:"accprofile"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// The FortiOS version to ignore release overview prompt for.
+	GuiIgnoreReleaseOverviewVersion *string `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	// Virtual domain name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -146,6 +160,8 @@ type SystemSsoAdminArgs struct {
 	Accprofile pulumi.StringInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// The FortiOS version to ignore release overview prompt for.
+	GuiIgnoreReleaseOverviewVersion pulumi.StringPtrInput
 	// Virtual domain name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

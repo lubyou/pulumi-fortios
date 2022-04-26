@@ -63,6 +63,10 @@ type LookupSystemSdnConnectorResult struct {
 	HaStatus string `pulumi:"haStatus"`
 	// IBM cloud region name.
 	IbmRegion string `pulumi:"ibmRegion"`
+	// IBM cloud compute generation 1 region name.
+	IbmRegionGen1 string `pulumi:"ibmRegionGen1"`
+	// IBM cloud compute generation 2 region name.
+	IbmRegionGen2 string `pulumi:"ibmRegionGen2"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Private key password.
@@ -252,6 +256,16 @@ func (o LookupSystemSdnConnectorResultOutput) HaStatus() pulumi.StringOutput {
 // IBM cloud region name.
 func (o LookupSystemSdnConnectorResultOutput) IbmRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegion }).(pulumi.StringOutput)
+}
+
+// IBM cloud compute generation 1 region name.
+func (o LookupSystemSdnConnectorResultOutput) IbmRegionGen1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegionGen1 }).(pulumi.StringOutput)
+}
+
+// IBM cloud compute generation 2 region name.
+func (o LookupSystemSdnConnectorResultOutput) IbmRegionGen2() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.IbmRegionGen2 }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

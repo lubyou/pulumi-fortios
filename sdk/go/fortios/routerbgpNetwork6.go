@@ -16,7 +16,13 @@ import (
 //
 // ## Import
 //
-// Routerbgp Network6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Routerbgp Network6 can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/routerbgpNetwork6:RouterbgpNetwork6 labelname {{fosid}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/routerbgpNetwork6:RouterbgpNetwork6 labelname {{fosid}}

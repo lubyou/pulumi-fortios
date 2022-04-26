@@ -17,6 +17,7 @@ class SystemSsoAdminArgs:
     def __init__(__self__, *,
                  accprofile: pulumi.Input[str],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSsoAdminVdomArgs']]]] = None):
@@ -24,6 +25,7 @@ class SystemSsoAdminArgs:
         The set of arguments for constructing a SystemSsoAdmin resource.
         :param pulumi.Input[str] accprofile: SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] gui_ignore_release_overview_version: The FortiOS version to ignore release overview prompt for.
         :param pulumi.Input[str] name: Virtual domain name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSsoAdminVdomArgs']]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -31,6 +33,8 @@ class SystemSsoAdminArgs:
         pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if gui_ignore_release_overview_version is not None:
+            pulumi.set(__self__, "gui_ignore_release_overview_version", gui_ignore_release_overview_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -61,6 +65,18 @@ class SystemSsoAdminArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")
+    def gui_ignore_release_overview_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The FortiOS version to ignore release overview prompt for.
+        """
+        return pulumi.get(self, "gui_ignore_release_overview_version")
+
+    @gui_ignore_release_overview_version.setter
+    def gui_ignore_release_overview_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_ignore_release_overview_version", value)
 
     @property
     @pulumi.getter
@@ -104,6 +120,7 @@ class _SystemSsoAdminState:
     def __init__(__self__, *,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSsoAdminVdomArgs']]]] = None):
@@ -111,6 +128,7 @@ class _SystemSsoAdminState:
         Input properties used for looking up and filtering SystemSsoAdmin resources.
         :param pulumi.Input[str] accprofile: SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] gui_ignore_release_overview_version: The FortiOS version to ignore release overview prompt for.
         :param pulumi.Input[str] name: Virtual domain name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSsoAdminVdomArgs']]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -119,6 +137,8 @@ class _SystemSsoAdminState:
             pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if gui_ignore_release_overview_version is not None:
+            pulumi.set(__self__, "gui_ignore_release_overview_version", gui_ignore_release_overview_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -149,6 +169,18 @@ class _SystemSsoAdminState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")
+    def gui_ignore_release_overview_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The FortiOS version to ignore release overview prompt for.
+        """
+        return pulumi.get(self, "gui_ignore_release_overview_version")
+
+    @gui_ignore_release_overview_version.setter
+    def gui_ignore_release_overview_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_ignore_release_overview_version", value)
 
     @property
     @pulumi.getter
@@ -194,6 +226,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]]] = None,
@@ -216,7 +249,13 @@ class SystemSsoAdmin(pulumi.CustomResource):
 
         ## Import
 
-        System SsoAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System SsoAdmin can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
@@ -228,6 +267,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accprofile: SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] gui_ignore_release_overview_version: The FortiOS version to ignore release overview prompt for.
         :param pulumi.Input[str] name: Virtual domain name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -256,7 +296,13 @@ class SystemSsoAdmin(pulumi.CustomResource):
 
         ## Import
 
-        System SsoAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System SsoAdmin can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
@@ -281,6 +327,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]]] = None,
@@ -302,6 +349,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                 raise TypeError("Missing required property 'accprofile'")
             __props__.__dict__["accprofile"] = accprofile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["gui_ignore_release_overview_version"] = gui_ignore_release_overview_version
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vdoms"] = vdoms
@@ -317,6 +365,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accprofile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]]] = None) -> 'SystemSsoAdmin':
@@ -329,6 +378,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accprofile: SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] gui_ignore_release_overview_version: The FortiOS version to ignore release overview prompt for.
         :param pulumi.Input[str] name: Virtual domain name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -339,6 +389,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
 
         __props__.__dict__["accprofile"] = accprofile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["gui_ignore_release_overview_version"] = gui_ignore_release_overview_version
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vdoms"] = vdoms
@@ -359,6 +410,14 @@ class SystemSsoAdmin(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")
+    def gui_ignore_release_overview_version(self) -> pulumi.Output[str]:
+        """
+        The FortiOS version to ignore release overview prompt for.
+        """
+        return pulumi.get(self, "gui_ignore_release_overview_version")
 
     @property
     @pulumi.getter

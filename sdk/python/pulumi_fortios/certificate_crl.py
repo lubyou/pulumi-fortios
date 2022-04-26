@@ -532,7 +532,13 @@ class CertificateCrl(pulumi.CustomResource):
 
         ## Import
 
-        Certificate Crl can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Certificate Crl can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}
@@ -569,7 +575,13 @@ class CertificateCrl(pulumi.CustomResource):
 
         ## Import
 
-        Certificate Crl can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Certificate Crl can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/certificateCrl:CertificateCrl labelname {{name}}

@@ -247,7 +247,13 @@ class FirewallIpmacbindingTable(pulumi.CustomResource):
 
         ## Import
 
-        FirewallIpmacbinding Table can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallIpmacbinding Table can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
@@ -288,7 +294,13 @@ class FirewallIpmacbindingTable(pulumi.CustomResource):
 
         ## Import
 
-        FirewallIpmacbinding Table can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallIpmacbinding Table can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable labelname {{seq_num}}

@@ -201,7 +201,13 @@ class SystemReplacemsgSpam(pulumi.CustomResource):
 
         ## Import
 
-        SystemReplacemsg Spam can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SystemReplacemsg Spam can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemReplacemsgSpam:SystemReplacemsgSpam labelname {{msg_type}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemReplacemsgSpam:SystemReplacemsgSpam labelname {{msg_type}}
@@ -228,7 +234,13 @@ class SystemReplacemsgSpam(pulumi.CustomResource):
 
         ## Import
 
-        SystemReplacemsg Spam can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SystemReplacemsg Spam can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemReplacemsgSpam:SystemReplacemsgSpam labelname {{msg_type}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemReplacemsgSpam:SystemReplacemsgSpam labelname {{msg_type}}

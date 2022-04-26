@@ -728,6 +728,7 @@ __all__ = [
     'GetSystemAutomationActionSdnConnectorResult',
     'GetSystemAutomationDestinationDestinationResult',
     'GetSystemAutomationTriggerFieldResult',
+    'GetSystemAutomationTriggerLogidBlockResult',
     'GetSystemCentralManagementServerListResult',
     'GetSystemClusterSyncDownIntfsBeforeSessSyncResult',
     'GetSystemClusterSyncSessionSyncFilterResult',
@@ -1132,6 +1133,7 @@ __all__ = [
     'SystemAutomationStitchAction',
     'SystemAutomationStitchDestination',
     'SystemAutomationTriggerField',
+    'SystemAutomationTriggerLogidBlock',
     'SystemCentralManagementServerList',
     'SystemClusterSyncDownIntfsBeforeSessSync',
     'SystemClusterSyncSessionSyncFilter',
@@ -39006,7 +39008,7 @@ class GetSystemAutomationTriggerFieldResult(dict):
                  name: str,
                  value: str):
         """
-        :param int id: Entry ID.
+        :param int id: Log ID.
         :param str name: Specify the name of the desired system automationtrigger.
         :param str value: Value.
         """
@@ -39018,7 +39020,7 @@ class GetSystemAutomationTriggerFieldResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        Entry ID.
+        Log ID.
         """
         return pulumi.get(self, "id")
 
@@ -39037,6 +39039,24 @@ class GetSystemAutomationTriggerFieldResult(dict):
         Value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetSystemAutomationTriggerLogidBlockResult(dict):
+    def __init__(__self__, *,
+                 id: int):
+        """
+        :param int id: Log ID.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Log ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -69935,7 +69955,7 @@ class SystemAutomationTriggerField(dict):
                  name: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param int id: Entry ID.
+        :param int id: Log ID.
         :param str name: Name.
         :param str value: Value.
         """
@@ -69950,7 +69970,7 @@ class SystemAutomationTriggerField(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        Entry ID.
+        Log ID.
         """
         return pulumi.get(self, "id")
 
@@ -69969,6 +69989,25 @@ class SystemAutomationTriggerField(dict):
         Value.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SystemAutomationTriggerLogidBlock(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        """
+        :param int id: Log ID.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Log ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

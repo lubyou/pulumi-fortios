@@ -685,7 +685,13 @@ class ReportLayout(pulumi.CustomResource):
 
         ## Import
 
-        Report Layout can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Report Layout can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}
@@ -746,7 +752,13 @@ class ReportLayout(pulumi.CustomResource):
 
         ## Import
 
-        Report Layout can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Report Layout can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/reportLayout:ReportLayout labelname {{name}}

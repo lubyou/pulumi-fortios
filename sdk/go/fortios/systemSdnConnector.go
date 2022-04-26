@@ -47,7 +47,13 @@ import (
 //
 // ## Import
 //
-// System SdnConnector can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// System SdnConnector can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
@@ -91,6 +97,10 @@ type SystemSdnConnector struct {
 	HaStatus pulumi.StringOutput `pulumi:"haStatus"`
 	// IBM cloud region name.
 	IbmRegion pulumi.StringOutput `pulumi:"ibmRegion"`
+	// IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	IbmRegionGen1 pulumi.StringOutput `pulumi:"ibmRegionGen1"`
+	// IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+	IbmRegionGen2 pulumi.StringOutput `pulumi:"ibmRegionGen2"`
 	// Private key password.
 	KeyPasswd pulumi.StringPtrOutput `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
@@ -233,6 +243,10 @@ type systemSdnConnectorState struct {
 	HaStatus *string `pulumi:"haStatus"`
 	// IBM cloud region name.
 	IbmRegion *string `pulumi:"ibmRegion"`
+	// IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	IbmRegionGen1 *string `pulumi:"ibmRegionGen1"`
+	// IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+	IbmRegionGen2 *string `pulumi:"ibmRegionGen2"`
 	// Private key password.
 	KeyPasswd *string `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
@@ -340,6 +354,10 @@ type SystemSdnConnectorState struct {
 	HaStatus pulumi.StringPtrInput
 	// IBM cloud region name.
 	IbmRegion pulumi.StringPtrInput
+	// IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	IbmRegionGen1 pulumi.StringPtrInput
+	// IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+	IbmRegionGen2 pulumi.StringPtrInput
 	// Private key password.
 	KeyPasswd pulumi.StringPtrInput
 	// Azure Stack login endpoint.
@@ -451,6 +469,10 @@ type systemSdnConnectorArgs struct {
 	HaStatus *string `pulumi:"haStatus"`
 	// IBM cloud region name.
 	IbmRegion *string `pulumi:"ibmRegion"`
+	// IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	IbmRegionGen1 *string `pulumi:"ibmRegionGen1"`
+	// IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+	IbmRegionGen2 *string `pulumi:"ibmRegionGen2"`
 	// Private key password.
 	KeyPasswd *string `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
@@ -559,6 +581,10 @@ type SystemSdnConnectorArgs struct {
 	HaStatus pulumi.StringPtrInput
 	// IBM cloud region name.
 	IbmRegion pulumi.StringPtrInput
+	// IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	IbmRegionGen1 pulumi.StringPtrInput
+	// IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+	IbmRegionGen2 pulumi.StringPtrInput
 	// Private key password.
 	KeyPasswd pulumi.StringPtrInput
 	// Azure Stack login endpoint.

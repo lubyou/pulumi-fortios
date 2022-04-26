@@ -27,7 +27,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * System AutomationTrigger can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * System AutomationTrigger can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/systemAutomationTrigger:SystemAutomationTrigger labelname {{name}}
@@ -112,6 +118,10 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
      */
     public readonly logid!: pulumi.Output<number>;
     /**
+     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     */
+    public readonly logidBlocks!: pulumi.Output<outputs.SystemAutomationTriggerLogidBlock[] | undefined>;
+    /**
      * Name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -177,6 +187,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["iocLevel"] = state ? state.iocLevel : undefined;
             resourceInputs["licenseType"] = state ? state.licenseType : undefined;
             resourceInputs["logid"] = state ? state.logid : undefined;
+            resourceInputs["logidBlocks"] = state ? state.logidBlocks : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["reportType"] = state ? state.reportType : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
@@ -201,6 +212,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["iocLevel"] = args ? args.iocLevel : undefined;
             resourceInputs["licenseType"] = args ? args.licenseType : undefined;
             resourceInputs["logid"] = args ? args.logid : undefined;
+            resourceInputs["logidBlocks"] = args ? args.logidBlocks : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["reportType"] = args ? args.reportType : undefined;
             resourceInputs["serial"] = args ? args.serial : undefined;
@@ -269,6 +281,10 @@ export interface SystemAutomationTriggerState {
      * Log ID to trigger event.
      */
     logid?: pulumi.Input<number>;
+    /**
+     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     */
+    logidBlocks?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerLogidBlock>[]>;
     /**
      * Name.
      */
@@ -363,6 +379,10 @@ export interface SystemAutomationTriggerArgs {
      * Log ID to trigger event.
      */
     logid?: pulumi.Input<number>;
+    /**
+     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     */
+    logidBlocks?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerLogidBlock>[]>;
     /**
      * Name.
      */

@@ -169,7 +169,13 @@ class LogTacacsAccounting2Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogTacacsAccounting2 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogTacacsAccounting2 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter
@@ -195,7 +201,13 @@ class LogTacacsAccounting2Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogTacacsAccounting2 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogTacacsAccounting2 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter labelname LogTacacsAccounting2Filter

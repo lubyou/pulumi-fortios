@@ -685,7 +685,13 @@ class RouterOspf6(pulumi.CustomResource):
 
         ## Import
 
-        Router Ospf6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router Ospf6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6
@@ -778,7 +784,13 @@ class RouterOspf6(pulumi.CustomResource):
 
         ## Import
 
-        Router Ospf6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router Ospf6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerOspf6:RouterOspf6 labelname RouterOspf6

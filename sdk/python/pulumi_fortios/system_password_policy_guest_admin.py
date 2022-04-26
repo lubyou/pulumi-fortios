@@ -486,7 +486,13 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
 
         ## Import
 
-        System PasswordPolicyGuestAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System PasswordPolicyGuestAdmin can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin
@@ -541,7 +547,13 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
 
         ## Import
 
-        System PasswordPolicyGuestAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System PasswordPolicyGuestAdmin can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin labelname SystemPasswordPolicyGuestAdmin

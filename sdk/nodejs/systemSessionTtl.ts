@@ -21,7 +21,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * System SessionTtl can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * System SessionTtl can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/systemSessionTtl:SystemSessionTtl labelname SystemSessionTtl
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/systemSessionTtl:SystemSessionTtl labelname SystemSessionTtl

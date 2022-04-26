@@ -233,11 +233,17 @@ class EmailfilterBwl(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.2`.
+        Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2`.
 
         ## Import
 
-        Emailfilter Bwl can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Bwl can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
@@ -261,11 +267,17 @@ class EmailfilterBwl(pulumi.CustomResource):
                  args: Optional[EmailfilterBwlArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.2`.
+        Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2`.
 
         ## Import
 
-        Emailfilter Bwl can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Bwl can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterBwl:EmailfilterBwl labelname {{fosid}}

@@ -180,7 +180,13 @@ class WirelessControllerHotspot20H2QpOperatorName(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 H2QpOperatorName can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 H2QpOperatorName can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}
@@ -215,7 +221,13 @@ class WirelessControllerHotspot20H2QpOperatorName(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 H2QpOperatorName can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 H2QpOperatorName can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName labelname {{name}}

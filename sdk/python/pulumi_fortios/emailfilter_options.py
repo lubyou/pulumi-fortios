@@ -103,7 +103,13 @@ class EmailfilterOptions(pulumi.CustomResource):
 
         ## Import
 
-        Emailfilter Options can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Options can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
@@ -127,7 +133,13 @@ class EmailfilterOptions(pulumi.CustomResource):
 
         ## Import
 
-        Emailfilter Options can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Options can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterOptions:EmailfilterOptions labelname EmailfilterOptions

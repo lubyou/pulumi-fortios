@@ -831,7 +831,13 @@ class SystemCentralManagement(pulumi.CustomResource):
 
         ## Import
 
-        System CentralManagement can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System CentralManagement can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement
@@ -909,7 +915,13 @@ class SystemCentralManagement(pulumi.CustomResource):
 
         ## Import
 
-        System CentralManagement can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System CentralManagement can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemCentralManagement:SystemCentralManagement labelname SystemCentralManagement

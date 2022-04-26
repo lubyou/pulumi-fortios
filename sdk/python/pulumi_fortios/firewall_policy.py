@@ -5450,7 +5450,13 @@ class FirewallPolicy(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Policy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Policy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
@@ -5701,7 +5707,13 @@ class FirewallPolicy(pulumi.CustomResource):
 
         ## Import
 
-        Firewall Policy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Firewall Policy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
@@ -6610,7 +6622,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="applicationList")
-    def application_list(self) -> pulumi.Output[str]:
+    def application_list(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing Application list.
         """
@@ -6626,7 +6638,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="authCert")
-    def auth_cert(self) -> pulumi.Output[str]:
+    def auth_cert(self) -> pulumi.Output[Optional[str]]:
         """
         HTTPS server certificate for policy authentication.
         """
@@ -6642,7 +6654,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="authRedirectAddr")
-    def auth_redirect_addr(self) -> pulumi.Output[str]:
+    def auth_redirect_addr(self) -> pulumi.Output[Optional[str]]:
         """
         HTTP-to-HTTPS redirect address for firewall authentication.
         """
@@ -6658,7 +6670,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="avProfile")
-    def av_profile(self) -> pulumi.Output[str]:
+    def av_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing Antivirus profile.
         """
@@ -6690,7 +6702,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cifsProfile")
-    def cifs_profile(self) -> pulumi.Output[str]:
+    def cifs_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing CIFS profile.
         """
@@ -6714,7 +6726,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="decryptedTrafficMirror")
-    def decrypted_traffic_mirror(self) -> pulumi.Output[str]:
+    def decrypted_traffic_mirror(self) -> pulumi.Output[Optional[str]]:
         """
         Decrypted traffic mirror.
         """
@@ -6778,7 +6790,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dlpSensor")
-    def dlp_sensor(self) -> pulumi.Output[str]:
+    def dlp_sensor(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing DLP sensor.
         """
@@ -6786,7 +6798,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dnsfilterProfile")
-    def dnsfilter_profile(self) -> pulumi.Output[str]:
+    def dnsfilter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing DNS filter profile.
         """
@@ -6858,7 +6870,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="emailfilterProfile")
-    def emailfilter_profile(self) -> pulumi.Output[str]:
+    def emailfilter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing email filter profile.
         """
@@ -6874,7 +6886,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="fileFilterProfile")
-    def file_filter_profile(self) -> pulumi.Output[str]:
+    def file_filter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing file-filter profile.
         """
@@ -6898,7 +6910,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def fsso(self) -> pulumi.Output[str]:
+    def fsso(self) -> pulumi.Output[Optional[str]]:
         """
         Enable/disable Fortinet Single Sign-On. Valid values: `enable`, `disable`.
         """
@@ -6906,7 +6918,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="fssoAgentForNtlm")
-    def fsso_agent_for_ntlm(self) -> pulumi.Output[str]:
+    def fsso_agent_for_ntlm(self) -> pulumi.Output[Optional[str]]:
         """
         FSSO agent to use for NTLM authentication.
         """
@@ -6938,7 +6950,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="globalLabel")
-    def global_label(self) -> pulumi.Output[str]:
+    def global_label(self) -> pulumi.Output[Optional[str]]:
         """
         Label for the policy that appears when the GUI is in Global View mode.
         """
@@ -6962,7 +6974,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="icapProfile")
-    def icap_profile(self) -> pulumi.Output[str]:
+    def icap_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing ICAP profile.
         """
@@ -6970,7 +6982,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="identityBasedRoute")
-    def identity_based_route(self) -> pulumi.Output[str]:
+    def identity_based_route(self) -> pulumi.Output[Optional[str]]:
         """
         Name of identity-based routing rule.
         """
@@ -7114,7 +7126,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipsSensor")
-    def ips_sensor(self) -> pulumi.Output[str]:
+    def ips_sensor(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing IPS sensor.
         """
@@ -7122,7 +7134,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def label(self) -> pulumi.Output[str]:
+    def label(self) -> pulumi.Output[Optional[str]]:
         """
         Label for the policy that appears when the GUI is in Section View mode.
         """
@@ -7130,7 +7142,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="learningMode")
-    def learning_mode(self) -> pulumi.Output[str]:
+    def learning_mode(self) -> pulumi.Output[Optional[str]]:
         """
         Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         """
@@ -7274,7 +7286,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="perIpShaper")
-    def per_ip_shaper(self) -> pulumi.Output[str]:
+    def per_ip_shaper(self) -> pulumi.Output[Optional[str]]:
         """
         Per-IP traffic shaper.
         """
@@ -7322,7 +7334,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="profileGroup")
-    def profile_group(self) -> pulumi.Output[str]:
+    def profile_group(self) -> pulumi.Output[Optional[str]]:
         """
         Name of profile group.
         """
@@ -7354,7 +7366,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="redirectUrl")
-    def redirect_url(self) -> pulumi.Output[str]:
+    def redirect_url(self) -> pulumi.Output[Optional[str]]:
         """
         URL users are directed to after seeing and accepting the disclaimer or authenticating.
         """
@@ -7362,7 +7374,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replacemsgOverrideGroup")
-    def replacemsg_override_group(self) -> pulumi.Output[str]:
+    def replacemsg_override_group(self) -> pulumi.Output[Optional[str]]:
         """
         Override the default replacement message group for this policy.
         """
@@ -7386,7 +7398,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rsso(self) -> pulumi.Output[str]:
+    def rsso(self) -> pulumi.Output[Optional[str]]:
         """
         Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
         """
@@ -7410,7 +7422,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="scanBotnetConnections")
-    def scan_botnet_connections(self) -> pulumi.Output[str]:
+    def scan_botnet_connections(self) -> pulumi.Output[Optional[str]]:
         """
         Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
         """
@@ -7434,7 +7446,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sctpFilterProfile")
-    def sctp_filter_profile(self) -> pulumi.Output[str]:
+    def sctp_filter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing SCTP filter profile.
         """
@@ -7466,7 +7478,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sessionTtl")
-    def session_ttl(self) -> pulumi.Output[int]:
+    def session_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
         """
@@ -7490,7 +7502,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="spamfilterProfile")
-    def spamfilter_profile(self) -> pulumi.Output[str]:
+    def spamfilter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing Spam filter profile.
         """
@@ -7538,7 +7550,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sshFilterProfile")
-    def ssh_filter_profile(self) -> pulumi.Output[str]:
+    def ssh_filter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing SSH filter profile.
         """
@@ -7554,7 +7566,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sslMirror")
-    def ssl_mirror(self) -> pulumi.Output[str]:
+    def ssl_mirror(self) -> pulumi.Output[Optional[str]]:
         """
         Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
         """
@@ -7642,7 +7654,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="trafficShaper")
-    def traffic_shaper(self) -> pulumi.Output[str]:
+    def traffic_shaper(self) -> pulumi.Output[Optional[str]]:
         """
         Traffic shaper.
         """
@@ -7650,7 +7662,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="trafficShaperReverse")
-    def traffic_shaper_reverse(self) -> pulumi.Output[str]:
+    def traffic_shaper_reverse(self) -> pulumi.Output[Optional[str]]:
         """
         Reverse traffic shaper.
         """
@@ -7698,7 +7710,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="videofilterProfile")
-    def videofilter_profile(self) -> pulumi.Output[str]:
+    def videofilter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing VideoFilter profile.
         """
@@ -7722,7 +7734,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vlanFilter")
-    def vlan_filter(self) -> pulumi.Output[str]:
+    def vlan_filter(self) -> pulumi.Output[Optional[str]]:
         """
         Set VLAN filters.
         """
@@ -7730,7 +7742,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="voipProfile")
-    def voip_profile(self) -> pulumi.Output[str]:
+    def voip_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing VoIP profile.
         """
@@ -7738,7 +7750,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vpntunnel(self) -> pulumi.Output[str]:
+    def vpntunnel(self) -> pulumi.Output[Optional[str]]:
         """
         Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
         """
@@ -7746,7 +7758,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="wafProfile")
-    def waf_profile(self) -> pulumi.Output[str]:
+    def waf_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing Web application firewall profile.
         """
@@ -7778,7 +7790,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="wanoptPeer")
-    def wanopt_peer(self) -> pulumi.Output[str]:
+    def wanopt_peer(self) -> pulumi.Output[Optional[str]]:
         """
         WAN optimization peer.
         """
@@ -7786,7 +7798,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="wanoptProfile")
-    def wanopt_profile(self) -> pulumi.Output[str]:
+    def wanopt_profile(self) -> pulumi.Output[Optional[str]]:
         """
         WAN optimization profile.
         """
@@ -7818,7 +7830,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="webfilterProfile")
-    def webfilter_profile(self) -> pulumi.Output[str]:
+    def webfilter_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Name of an existing Web filter profile.
         """
@@ -7826,7 +7838,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="webproxyForwardServer")
-    def webproxy_forward_server(self) -> pulumi.Output[str]:
+    def webproxy_forward_server(self) -> pulumi.Output[Optional[str]]:
         """
         Web proxy forward server name.
         """
@@ -7834,7 +7846,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="webproxyProfile")
-    def webproxy_profile(self) -> pulumi.Output[str]:
+    def webproxy_profile(self) -> pulumi.Output[Optional[str]]:
         """
         Webproxy profile name.
         """
@@ -7842,7 +7854,7 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def wsso(self) -> pulumi.Output[str]:
+    def wsso(self) -> pulumi.Output[Optional[str]]:
         """
         Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
         """

@@ -282,7 +282,13 @@ class SystemVdomException(pulumi.CustomResource):
 
         ## Import
 
-        System VdomException can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VdomException can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
@@ -324,7 +330,13 @@ class SystemVdomException(pulumi.CustomResource):
 
         ## Import
 
-        System VdomException can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System VdomException can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemVdomException:SystemVdomException labelname {{fosid}}

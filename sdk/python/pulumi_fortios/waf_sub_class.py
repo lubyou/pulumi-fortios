@@ -136,7 +136,13 @@ class WafSubClass(pulumi.CustomResource):
 
         ## Import
 
-        Waf SubClass can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Waf SubClass can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}
@@ -161,7 +167,13 @@ class WafSubClass(pulumi.CustomResource):
 
         ## Import
 
-        Waf SubClass can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Waf SubClass can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wafSubClass:WafSubClass labelname {{fosid}}

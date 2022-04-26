@@ -38,7 +38,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Firewall CentralSnatMap can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Firewall CentralSnatMap can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap labelname {{policyid}}

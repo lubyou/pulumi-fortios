@@ -1490,7 +1490,13 @@ class WirelessControllerWtp(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Wtp can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Wtp can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}
@@ -1556,7 +1562,13 @@ class WirelessControllerWtp(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Wtp can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Wtp can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerWtp:WirelessControllerWtp labelname {{wtp_id}}

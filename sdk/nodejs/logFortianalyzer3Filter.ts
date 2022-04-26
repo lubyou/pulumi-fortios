@@ -32,7 +32,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * LogFortianalyzer3 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * LogFortianalyzer3 Filter can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/logFortianalyzer3Filter:LogFortianalyzer3Filter labelname LogFortianalyzer3Filter
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/logFortianalyzer3Filter:LogFortianalyzer3Filter labelname LogFortianalyzer3Filter

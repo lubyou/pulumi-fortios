@@ -169,7 +169,13 @@ class SwitchControllerSnmpTrapThreshold(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController SnmpTrapThreshold can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController SnmpTrapThreshold can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
@@ -195,7 +201,13 @@ class SwitchControllerSnmpTrapThreshold(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController SnmpTrapThreshold can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController SnmpTrapThreshold can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold labelname SwitchControllerSnmpTrapThreshold

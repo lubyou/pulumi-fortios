@@ -181,7 +181,13 @@ class SpamfilterFortishield(pulumi.CustomResource):
 
         ## Import
 
-        Spamfilter Fortishield can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Spamfilter Fortishield can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield
@@ -219,7 +225,13 @@ class SpamfilterFortishield(pulumi.CustomResource):
 
         ## Import
 
-        Spamfilter Fortishield can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Spamfilter Fortishield can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/spamfilterFortishield:SpamfilterFortishield labelname SpamfilterFortishield

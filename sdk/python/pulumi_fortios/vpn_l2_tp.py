@@ -366,7 +366,13 @@ class VpnL2Tp(pulumi.CustomResource):
 
         ## Import
 
-        Vpn L2Tp can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Vpn L2Tp can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
@@ -398,7 +404,13 @@ class VpnL2Tp(pulumi.CustomResource):
 
         ## Import
 
-        Vpn L2Tp can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Vpn L2Tp can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnL2Tp:VpnL2Tp labelname VpnL2Tp

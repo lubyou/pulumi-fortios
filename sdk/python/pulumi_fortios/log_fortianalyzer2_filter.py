@@ -687,7 +687,13 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogFortianalyzer2 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortianalyzer2 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortianalyzer2Filter:LogFortianalyzer2Filter labelname LogFortianalyzer2Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortianalyzer2Filter:LogFortianalyzer2Filter labelname LogFortianalyzer2Filter
@@ -749,7 +755,13 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
 
         ## Import
 
-        LogFortianalyzer2 Filter can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortianalyzer2 Filter can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortianalyzer2Filter:LogFortianalyzer2Filter labelname LogFortianalyzer2Filter
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortianalyzer2Filter:LogFortianalyzer2Filter labelname LogFortianalyzer2Filter

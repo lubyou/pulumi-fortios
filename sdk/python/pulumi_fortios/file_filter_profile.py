@@ -365,11 +365,17 @@ class FileFilterProfile(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.2`.
+        Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.1`.
 
         ## Import
 
-        FileFilter Profile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FileFilter Profile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
@@ -397,11 +403,17 @@ class FileFilterProfile(pulumi.CustomResource):
                  args: Optional[FileFilterProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.2`.
+        Configure file-filter profiles. Applies to FortiOS Version `>= 6.4.1`.
 
         ## Import
 
-        FileFilter Profile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FileFilter Profile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/fileFilterProfile:FileFilterProfile labelname {{name}}

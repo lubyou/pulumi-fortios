@@ -385,7 +385,13 @@ class FirewallSshSetting(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSsh Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSsh Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
@@ -435,7 +441,13 @@ class FirewallSshSetting(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSsh Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSsh Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallSshSetting:FirewallSshSetting labelname FirewallSshSetting

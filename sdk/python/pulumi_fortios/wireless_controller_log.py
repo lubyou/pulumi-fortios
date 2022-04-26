@@ -466,7 +466,13 @@ class WirelessControllerLog(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Log can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Log can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
@@ -501,7 +507,13 @@ class WirelessControllerLog(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Log can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Log can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerLog:WirelessControllerLog labelname WirelessControllerLog

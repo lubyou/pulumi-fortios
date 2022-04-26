@@ -169,7 +169,13 @@ class LogTacacsAccountingSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogTacacsAccounting Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogTacacsAccounting Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting labelname LogTacacsAccountingSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting labelname LogTacacsAccountingSetting
@@ -195,7 +201,13 @@ class LogTacacsAccountingSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogTacacsAccounting Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogTacacsAccounting Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting labelname LogTacacsAccountingSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting labelname LogTacacsAccountingSetting

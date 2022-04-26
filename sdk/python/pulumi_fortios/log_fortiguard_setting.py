@@ -548,7 +548,13 @@ class LogFortiguardSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogFortiguard Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortiguard Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
@@ -601,7 +607,13 @@ class LogFortiguardSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogFortiguard Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogFortiguard Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logFortiguardSetting:LogFortiguardSetting labelname LogFortiguardSetting

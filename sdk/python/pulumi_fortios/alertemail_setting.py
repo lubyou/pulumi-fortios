@@ -62,16 +62,25 @@ class AlertemailSettingArgs:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+        :param pulumi.Input[str] fips_cc_errors: Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_authentication_failure_logs: Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_log_quota_warning: Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fsso_disconnect_logs: Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_logs: Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] information_interval: Information alert interval in minutes.
+        :param pulumi.Input[str] ips_logs: Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
         :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
         :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
+        :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
@@ -279,6 +288,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        """
         return pulumi.get(self, "fds_license_expiring_days")
 
     @fds_license_expiring_days.setter
@@ -288,6 +300,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="fdsLicenseExpiringWarning")
     def fds_license_expiring_warning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_license_expiring_warning")
 
     @fds_license_expiring_warning.setter
@@ -297,6 +312,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="fdsUpdateLogs")
     def fds_update_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_update_logs")
 
     @fds_update_logs.setter
@@ -318,6 +336,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="fipsCcErrors")
     def fips_cc_errors(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fips_cc_errors")
 
     @fips_cc_errors.setter
@@ -351,6 +372,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="fssoDisconnectLogs")
     def fsso_disconnect_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fsso_disconnect_logs")
 
     @fsso_disconnect_logs.setter
@@ -360,6 +384,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="haLogs")
     def ha_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_logs")
 
     @ha_logs.setter
@@ -381,6 +408,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="ipsLogs")
     def ips_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ips_logs")
 
     @ips_logs.setter
@@ -390,6 +420,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="ipsecErrorsLogs")
     def ipsec_errors_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ipsec_errors_logs")
 
     @ipsec_errors_logs.setter
@@ -471,6 +504,9 @@ class AlertemailSettingArgs:
     @property
     @pulumi.getter(name="pppErrorsLogs")
     def ppp_errors_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ppp_errors_logs")
 
     @ppp_errors_logs.setter
@@ -626,16 +662,25 @@ class _AlertemailSettingState:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+        :param pulumi.Input[str] fips_cc_errors: Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_authentication_failure_logs: Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_log_quota_warning: Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fsso_disconnect_logs: Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_logs: Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] information_interval: Information alert interval in minutes.
+        :param pulumi.Input[str] ips_logs: Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
         :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
         :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
+        :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
@@ -843,6 +888,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        """
         return pulumi.get(self, "fds_license_expiring_days")
 
     @fds_license_expiring_days.setter
@@ -852,6 +900,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="fdsLicenseExpiringWarning")
     def fds_license_expiring_warning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_license_expiring_warning")
 
     @fds_license_expiring_warning.setter
@@ -861,6 +912,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="fdsUpdateLogs")
     def fds_update_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_update_logs")
 
     @fds_update_logs.setter
@@ -882,6 +936,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="fipsCcErrors")
     def fips_cc_errors(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fips_cc_errors")
 
     @fips_cc_errors.setter
@@ -915,6 +972,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="fssoDisconnectLogs")
     def fsso_disconnect_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fsso_disconnect_logs")
 
     @fsso_disconnect_logs.setter
@@ -924,6 +984,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="haLogs")
     def ha_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_logs")
 
     @ha_logs.setter
@@ -945,6 +1008,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="ipsLogs")
     def ips_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ips_logs")
 
     @ips_logs.setter
@@ -954,6 +1020,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="ipsecErrorsLogs")
     def ipsec_errors_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ipsec_errors_logs")
 
     @ipsec_errors_logs.setter
@@ -1035,6 +1104,9 @@ class _AlertemailSettingState:
     @property
     @pulumi.getter(name="pppErrorsLogs")
     def ppp_errors_logs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ppp_errors_logs")
 
     @ppp_errors_logs.setter
@@ -1207,7 +1279,13 @@ class AlertemailSetting(pulumi.CustomResource):
 
         ## Import
 
-        Alertemail Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Alertemail Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
@@ -1227,16 +1305,25 @@ class AlertemailSetting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+        :param pulumi.Input[str] fips_cc_errors: Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_authentication_failure_logs: Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_log_quota_warning: Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fsso_disconnect_logs: Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_logs: Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] information_interval: Information alert interval in minutes.
+        :param pulumi.Input[str] ips_logs: Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
         :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
         :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
+        :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
@@ -1278,7 +1365,13 @@ class AlertemailSetting(pulumi.CustomResource):
 
         ## Import
 
-        Alertemail Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Alertemail Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/alertemailSetting:AlertemailSetting labelname AlertemailSetting
@@ -1453,16 +1546,25 @@ class AlertemailSetting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
+        :param pulumi.Input[str] fips_cc_errors: Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_authentication_failure_logs: Enable/disable firewall authentication failure logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_log_quota_warning: Enable/disable FortiCloud log quota warnings in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fsso_disconnect_logs: Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_logs: Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] information_interval: Information alert interval in minutes.
+        :param pulumi.Input[str] ips_logs: Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
         :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
         :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
+        :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
@@ -1598,16 +1700,25 @@ class AlertemailSetting(pulumi.CustomResource):
     @property
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> pulumi.Output[int]:
+        """
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        """
         return pulumi.get(self, "fds_license_expiring_days")
 
     @property
     @pulumi.getter(name="fdsLicenseExpiringWarning")
     def fds_license_expiring_warning(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_license_expiring_warning")
 
     @property
     @pulumi.getter(name="fdsUpdateLogs")
     def fds_update_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fds_update_logs")
 
     @property
@@ -1621,6 +1732,9 @@ class AlertemailSetting(pulumi.CustomResource):
     @property
     @pulumi.getter(name="fipsCcErrors")
     def fips_cc_errors(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FIPS and Common Criteria error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fips_cc_errors")
 
     @property
@@ -1642,11 +1756,17 @@ class AlertemailSetting(pulumi.CustomResource):
     @property
     @pulumi.getter(name="fssoDisconnectLogs")
     def fsso_disconnect_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging of FSSO collector agent disconnect. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "fsso_disconnect_logs")
 
     @property
     @pulumi.getter(name="haLogs")
     def ha_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HA logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ha_logs")
 
     @property
@@ -1660,11 +1780,17 @@ class AlertemailSetting(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ipsLogs")
     def ips_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IPS logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ips_logs")
 
     @property
     @pulumi.getter(name="ipsecErrorsLogs")
     def ipsec_errors_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ipsec_errors_logs")
 
     @property
@@ -1718,6 +1844,9 @@ class AlertemailSetting(pulumi.CustomResource):
     @property
     @pulumi.getter(name="pppErrorsLogs")
     def ppp_errors_logs(self) -> pulumi.Output[str]:
+        """
+        Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "ppp_errors_logs")
 
     @property

@@ -40,7 +40,13 @@ import (
 //
 // ## Import
 //
-// System Sflow can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// System Sflow can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/systemSflow:SystemSflow labelname SystemSflow
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/systemSflow:SystemSflow labelname SystemSflow

@@ -180,7 +180,13 @@ class WirelessControllerHotspot20AnqpNetworkAuthType(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
@@ -217,7 +223,13 @@ class WirelessControllerHotspot20AnqpNetworkAuthType(pulumi.CustomResource):
 
         ## Import
 
-        WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessControllerHotspot20 AnqpNetworkAuthType can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerHotspot20AnqpNetworkAuthType:WirelessControllerHotspot20AnqpNetworkAuthType labelname {{name}}

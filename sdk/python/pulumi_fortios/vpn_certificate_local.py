@@ -13,7 +13,6 @@ __all__ = ['VpnCertificateLocalArgs', 'VpnCertificateLocal']
 @pulumi.input_type
 class VpnCertificateLocalArgs:
     def __init__(__self__, *,
-                 private_key: pulumi.Input[str],
                  acme_ca_url: Optional[pulumi.Input[str]] = None,
                  acme_domain: Optional[pulumi.Input[str]] = None,
                  acme_email: Optional[pulumi.Input[str]] = None,
@@ -36,6 +35,7 @@ class VpnCertificateLocalArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  name_encoding: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
                  range: Optional[pulumi.Input[str]] = None,
                  scep_password: Optional[pulumi.Input[str]] = None,
                  scep_url: Optional[pulumi.Input[str]] = None,
@@ -45,7 +45,6 @@ class VpnCertificateLocalArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnCertificateLocal resource.
-        :param pulumi.Input[str] private_key: PEM format key, encrypted with a password.
         :param pulumi.Input[str] acme_ca_url: The URL for the ACME CA server (Let's Encrypt is the default provider).
         :param pulumi.Input[str] acme_domain: A valid domain that resolves to this Fortigate.
         :param pulumi.Input[str] acme_email: Contact email address that is required by some CAs like LetsEncrypt.
@@ -68,6 +67,7 @@ class VpnCertificateLocalArgs:
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] name_encoding: Name encoding method for auto-regeneration. Valid values: `printable`, `utf8`.
         :param pulumi.Input[str] password: Password as a PEM file.
+        :param pulumi.Input[str] private_key: PEM format key, encrypted with a password.
         :param pulumi.Input[str] range: Either a global or VDOM IP address range for the certificate. Valid values: `global`, `vdom`.
         :param pulumi.Input[str] scep_password: SCEP server challenge password for auto-regeneration.
         :param pulumi.Input[str] scep_url: SCEP server URL.
@@ -76,7 +76,6 @@ class VpnCertificateLocalArgs:
         :param pulumi.Input[str] state: Certificate Signing Request State.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
-        pulumi.set(__self__, "private_key", private_key)
         if acme_ca_url is not None:
             pulumi.set(__self__, "acme_ca_url", acme_ca_url)
         if acme_domain is not None:
@@ -121,6 +120,8 @@ class VpnCertificateLocalArgs:
             pulumi.set(__self__, "name_encoding", name_encoding)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
         if range is not None:
             pulumi.set(__self__, "range", range)
         if scep_password is not None:
@@ -135,18 +136,6 @@ class VpnCertificateLocalArgs:
             pulumi.set(__self__, "state", state)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
-
-    @property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[str]:
-        """
-        PEM format key, encrypted with a password.
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "private_key", value)
 
     @property
     @pulumi.getter(name="acmeCaUrl")
@@ -411,6 +400,18 @@ class VpnCertificateLocalArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        PEM format key, encrypted with a password.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
 
     @property
     @pulumi.getter
@@ -1026,7 +1027,13 @@ class VpnCertificateLocal(pulumi.CustomResource):
 
         ## Import
 
-        VpnCertificate Local can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnCertificate Local can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
@@ -1071,14 +1078,20 @@ class VpnCertificateLocal(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: VpnCertificateLocalArgs,
+                 args: Optional[VpnCertificateLocalArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Local keys and certificates.
 
         ## Import
 
-        VpnCertificate Local can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnCertificate Local can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnCertificateLocal:VpnCertificateLocal labelname {{name}}
@@ -1167,8 +1180,6 @@ class VpnCertificateLocal(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["name_encoding"] = name_encoding
             __props__.__dict__["password"] = password
-            if private_key is None and not opts.urn:
-                raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = private_key
             __props__.__dict__["range"] = range
             __props__.__dict__["scep_password"] = scep_password

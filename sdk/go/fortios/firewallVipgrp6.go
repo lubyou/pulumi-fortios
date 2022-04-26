@@ -97,7 +97,13 @@ import (
 //
 // ## Import
 //
-// Firewall Vipgrp6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Firewall Vipgrp6 can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/firewallVipgrp6:FirewallVipgrp6 labelname {{name}}

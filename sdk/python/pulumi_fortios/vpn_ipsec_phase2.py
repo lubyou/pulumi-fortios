@@ -1669,7 +1669,13 @@ class VpnIpsecPhase2(pulumi.CustomResource):
 
         ## Import
 
-        VpnIpsec Phase2 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnIpsec Phase2 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnIpsecPhase2:VpnIpsecPhase2 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnIpsecPhase2:VpnIpsecPhase2 labelname {{name}}
@@ -1853,7 +1859,13 @@ class VpnIpsecPhase2(pulumi.CustomResource):
 
         ## Import
 
-        VpnIpsec Phase2 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        VpnIpsec Phase2 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/vpnIpsecPhase2:VpnIpsecPhase2 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/vpnIpsecPhase2:VpnIpsecPhase2 labelname {{name}}

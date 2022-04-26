@@ -111,7 +111,13 @@ class LogNullDeviceSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogNullDevice Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogNullDevice Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
@@ -144,7 +150,13 @@ class LogNullDeviceSetting(pulumi.CustomResource):
 
         ## Import
 
-        LogNullDevice Setting can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        LogNullDevice Setting can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/logNullDeviceSetting:LogNullDeviceSetting labelname LogNullDeviceSetting

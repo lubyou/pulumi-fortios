@@ -24,7 +24,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * System SsoAdmin can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * System SsoAdmin can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/systemSsoAdmin:SystemSsoAdmin labelname {{name}}
@@ -69,6 +75,10 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * The FortiOS version to ignore release overview prompt for.
+     */
+    public readonly guiIgnoreReleaseOverviewVersion!: pulumi.Output<string>;
+    /**
      * Virtual domain name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -96,6 +106,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
             const state = argsOrState as SystemSsoAdminState | undefined;
             resourceInputs["accprofile"] = state ? state.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["guiIgnoreReleaseOverviewVersion"] = state ? state.guiIgnoreReleaseOverviewVersion : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vdoms"] = state ? state.vdoms : undefined;
@@ -106,6 +117,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
             }
             resourceInputs["accprofile"] = args ? args.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["guiIgnoreReleaseOverviewVersion"] = args ? args.guiIgnoreReleaseOverviewVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vdoms"] = args ? args.vdoms : undefined;
@@ -127,6 +139,10 @@ export interface SystemSsoAdminState {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * The FortiOS version to ignore release overview prompt for.
+     */
+    guiIgnoreReleaseOverviewVersion?: pulumi.Input<string>;
     /**
      * Virtual domain name.
      */
@@ -153,6 +169,10 @@ export interface SystemSsoAdminArgs {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * The FortiOS version to ignore release overview prompt for.
+     */
+    guiIgnoreReleaseOverviewVersion?: pulumi.Input<string>;
     /**
      * Virtual domain name.
      */

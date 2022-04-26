@@ -52,7 +52,13 @@ import (
 //
 // ## Import
 //
-// Router Static can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Router Static can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/routerStatic:RouterStatic labelname {{seq_num}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/routerStatic:RouterStatic labelname {{seq_num}}

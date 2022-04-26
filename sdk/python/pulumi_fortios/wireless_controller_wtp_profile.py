@@ -1623,7 +1623,13 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController WtpProfile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController WtpProfile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}
@@ -1693,7 +1699,13 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController WtpProfile can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController WtpProfile can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile labelname {{name}}

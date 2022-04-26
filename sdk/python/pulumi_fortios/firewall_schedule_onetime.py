@@ -279,7 +279,13 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSchedule Onetime can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSchedule Onetime can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
@@ -321,7 +327,13 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSchedule Onetime can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSchedule Onetime can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime labelname {{name}}

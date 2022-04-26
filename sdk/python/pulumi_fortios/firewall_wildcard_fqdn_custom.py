@@ -280,7 +280,13 @@ class FirewallWildcardFqdnCustom(pulumi.CustomResource):
 
         ## Import
 
-        FirewallWildcardFqdn Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallWildcardFqdn Custom can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}
@@ -321,7 +327,13 @@ class FirewallWildcardFqdnCustom(pulumi.CustomResource):
 
         ## Import
 
-        FirewallWildcardFqdn Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallWildcardFqdn Custom can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom labelname {{name}}

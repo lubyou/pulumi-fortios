@@ -633,7 +633,13 @@ class WirelessControllerTimers(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Timers can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Timers can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers
@@ -673,7 +679,13 @@ class WirelessControllerTimers(pulumi.CustomResource):
 
         ## Import
 
-        WirelessController Timers can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        WirelessController Timers can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wirelessControllerTimers:WirelessControllerTimers labelname WirelessControllerTimers

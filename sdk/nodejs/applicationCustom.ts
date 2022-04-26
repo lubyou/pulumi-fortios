@@ -9,7 +9,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Application Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Application Custom can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/applicationCustom:ApplicationCustom labelname {{tag}}

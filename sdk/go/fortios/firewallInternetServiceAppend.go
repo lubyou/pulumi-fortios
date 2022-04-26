@@ -10,11 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.2,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4`.
+// Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.1,6.4.2,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4`.
 //
 // ## Import
 //
-// Firewall InternetServiceAppend can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Firewall InternetServiceAppend can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/firewallInternetServiceAppend:FirewallInternetServiceAppend labelname FirewallInternetServiceAppend

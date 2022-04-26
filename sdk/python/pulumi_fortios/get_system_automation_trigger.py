@@ -21,7 +21,7 @@ class GetSystemAutomationTriggerResult:
     """
     A collection of values returned by GetSystemAutomationTrigger.
     """
-    def __init__(__self__, description=None, event_type=None, fabric_event_name=None, fabric_event_severity=None, faz_event_name=None, faz_event_severity=None, faz_event_tags=None, fields=None, id=None, ioc_level=None, license_type=None, logid=None, name=None, report_type=None, serial=None, trigger_day=None, trigger_frequency=None, trigger_hour=None, trigger_minute=None, trigger_type=None, trigger_weekday=None, vdomparam=None):
+    def __init__(__self__, description=None, event_type=None, fabric_event_name=None, fabric_event_severity=None, faz_event_name=None, faz_event_severity=None, faz_event_tags=None, fields=None, id=None, ioc_level=None, license_type=None, logid=None, logid_blocks=None, name=None, report_type=None, serial=None, trigger_day=None, trigger_frequency=None, trigger_hour=None, trigger_minute=None, trigger_type=None, trigger_weekday=None, vdomparam=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -58,6 +58,9 @@ class GetSystemAutomationTriggerResult:
         if logid and not isinstance(logid, int):
             raise TypeError("Expected argument 'logid' to be a int")
         pulumi.set(__self__, "logid", logid)
+        if logid_blocks and not isinstance(logid_blocks, list):
+            raise TypeError("Expected argument 'logid_blocks' to be a list")
+        pulumi.set(__self__, "logid_blocks", logid_blocks)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -186,6 +189,14 @@ class GetSystemAutomationTriggerResult:
         return pulumi.get(self, "logid")
 
     @property
+    @pulumi.getter(name="logidBlocks")
+    def logid_blocks(self) -> Sequence['outputs.GetSystemAutomationTriggerLogidBlockResult']:
+        """
+        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        """
+        return pulumi.get(self, "logid_blocks")
+
+    @property
     @pulumi.getter
     def name(self) -> str:
         """
@@ -281,6 +292,7 @@ class AwaitableGetSystemAutomationTriggerResult(GetSystemAutomationTriggerResult
             ioc_level=self.ioc_level,
             license_type=self.license_type,
             logid=self.logid,
+            logid_blocks=self.logid_blocks,
             name=self.name,
             report_type=self.report_type,
             serial=self.serial,
@@ -327,6 +339,7 @@ def get_system_automation_trigger(name: Optional[str] = None,
         ioc_level=__ret__.ioc_level,
         license_type=__ret__.license_type,
         logid=__ret__.logid,
+        logid_blocks=__ret__.logid_blocks,
         name=__ret__.name,
         report_type=__ret__.report_type,
         serial=__ret__.serial,

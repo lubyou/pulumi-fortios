@@ -34,6 +34,8 @@ class SystemSdnConnectorArgs:
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen1: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen2: Optional[pulumi.Input[str]] = None,
                  key_passwd: Optional[pulumi.Input[str]] = None,
                  login_endpoint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -88,6 +90,8 @@ class SystemSdnConnectorArgs:
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
+        :param pulumi.Input[str] ibm_region_gen1: IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region_gen2: IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
         :param pulumi.Input[str] name: GCP zone name.
@@ -158,6 +162,10 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "ha_status", ha_status)
         if ibm_region is not None:
             pulumi.set(__self__, "ibm_region", ibm_region)
+        if ibm_region_gen1 is not None:
+            pulumi.set(__self__, "ibm_region_gen1", ibm_region_gen1)
+        if ibm_region_gen2 is not None:
+            pulumi.set(__self__, "ibm_region_gen2", ibm_region_gen2)
         if key_passwd is not None:
             pulumi.set(__self__, "key_passwd", key_passwd)
         if login_endpoint is not None:
@@ -452,6 +460,30 @@ class SystemSdnConnectorArgs:
     @ibm_region.setter
     def ibm_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ibm_region", value)
+
+    @property
+    @pulumi.getter(name="ibmRegionGen1")
+    def ibm_region_gen1(self) -> Optional[pulumi.Input[str]]:
+        """
+        IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        """
+        return pulumi.get(self, "ibm_region_gen1")
+
+    @ibm_region_gen1.setter
+    def ibm_region_gen1(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ibm_region_gen1", value)
+
+    @property
+    @pulumi.getter(name="ibmRegionGen2")
+    def ibm_region_gen2(self) -> Optional[pulumi.Input[str]]:
+        """
+        IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+        """
+        return pulumi.get(self, "ibm_region_gen2")
+
+    @ibm_region_gen2.setter
+    def ibm_region_gen2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ibm_region_gen2", value)
 
     @property
     @pulumi.getter(name="keyPasswd")
@@ -870,6 +902,8 @@ class _SystemSdnConnectorState:
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen1: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen2: Optional[pulumi.Input[str]] = None,
                  key_passwd: Optional[pulumi.Input[str]] = None,
                  login_endpoint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -924,6 +958,8 @@ class _SystemSdnConnectorState:
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
+        :param pulumi.Input[str] ibm_region_gen1: IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region_gen2: IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
         :param pulumi.Input[str] name: GCP zone name.
@@ -994,6 +1030,10 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "ha_status", ha_status)
         if ibm_region is not None:
             pulumi.set(__self__, "ibm_region", ibm_region)
+        if ibm_region_gen1 is not None:
+            pulumi.set(__self__, "ibm_region_gen1", ibm_region_gen1)
+        if ibm_region_gen2 is not None:
+            pulumi.set(__self__, "ibm_region_gen2", ibm_region_gen2)
         if key_passwd is not None:
             pulumi.set(__self__, "key_passwd", key_passwd)
         if login_endpoint is not None:
@@ -1268,6 +1308,30 @@ class _SystemSdnConnectorState:
     @ibm_region.setter
     def ibm_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ibm_region", value)
+
+    @property
+    @pulumi.getter(name="ibmRegionGen1")
+    def ibm_region_gen1(self) -> Optional[pulumi.Input[str]]:
+        """
+        IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        """
+        return pulumi.get(self, "ibm_region_gen1")
+
+    @ibm_region_gen1.setter
+    def ibm_region_gen1(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ibm_region_gen1", value)
+
+    @property
+    @pulumi.getter(name="ibmRegionGen2")
+    def ibm_region_gen2(self) -> Optional[pulumi.Input[str]]:
+        """
+        IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+        """
+        return pulumi.get(self, "ibm_region_gen2")
+
+    @ibm_region_gen2.setter
+    def ibm_region_gen2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ibm_region_gen2", value)
 
     @property
     @pulumi.getter(name="keyPasswd")
@@ -1712,6 +1776,8 @@ class SystemSdnConnector(pulumi.CustomResource):
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen1: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen2: Optional[pulumi.Input[str]] = None,
                  key_passwd: Optional[pulumi.Input[str]] = None,
                  login_endpoint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1772,7 +1838,13 @@ class SystemSdnConnector(pulumi.CustomResource):
 
         ## Import
 
-        System SdnConnector can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System SdnConnector can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
@@ -1799,6 +1871,8 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
+        :param pulumi.Input[str] ibm_region_gen1: IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region_gen2: IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
         :param pulumi.Input[str] name: GCP zone name.
@@ -1865,7 +1939,13 @@ class SystemSdnConnector(pulumi.CustomResource):
 
         ## Import
 
-        System SdnConnector can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        System SdnConnector can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
@@ -1905,6 +1985,8 @@ class SystemSdnConnector(pulumi.CustomResource):
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen1: Optional[pulumi.Input[str]] = None,
+                 ibm_region_gen2: Optional[pulumi.Input[str]] = None,
                  key_passwd: Optional[pulumi.Input[str]] = None,
                  login_endpoint: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1971,6 +2053,8 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["ha_status"] = ha_status
             __props__.__dict__["ibm_region"] = ibm_region
+            __props__.__dict__["ibm_region_gen1"] = ibm_region_gen1
+            __props__.__dict__["ibm_region_gen2"] = ibm_region_gen2
             __props__.__dict__["key_passwd"] = key_passwd
             __props__.__dict__["login_endpoint"] = login_endpoint
             __props__.__dict__["name"] = name
@@ -2037,6 +2121,8 @@ class SystemSdnConnector(pulumi.CustomResource):
             group_name: Optional[pulumi.Input[str]] = None,
             ha_status: Optional[pulumi.Input[str]] = None,
             ibm_region: Optional[pulumi.Input[str]] = None,
+            ibm_region_gen1: Optional[pulumi.Input[str]] = None,
+            ibm_region_gen2: Optional[pulumi.Input[str]] = None,
             key_passwd: Optional[pulumi.Input[str]] = None,
             login_endpoint: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -2096,6 +2182,8 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
+        :param pulumi.Input[str] ibm_region_gen1: IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region_gen2: IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
         :param pulumi.Input[str] name: GCP zone name.
@@ -2153,6 +2241,8 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["ha_status"] = ha_status
         __props__.__dict__["ibm_region"] = ibm_region
+        __props__.__dict__["ibm_region_gen1"] = ibm_region_gen1
+        __props__.__dict__["ibm_region_gen2"] = ibm_region_gen2
         __props__.__dict__["key_passwd"] = key_passwd
         __props__.__dict__["login_endpoint"] = login_endpoint
         __props__.__dict__["name"] = name
@@ -2325,6 +2415,22 @@ class SystemSdnConnector(pulumi.CustomResource):
         IBM cloud region name.
         """
         return pulumi.get(self, "ibm_region")
+
+    @property
+    @pulumi.getter(name="ibmRegionGen1")
+    def ibm_region_gen1(self) -> pulumi.Output[str]:
+        """
+        IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        """
+        return pulumi.get(self, "ibm_region_gen1")
+
+    @property
+    @pulumi.getter(name="ibmRegionGen2")
+    def ibm_region_gen2(self) -> pulumi.Output[str]:
+        """
+        IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+        """
+        return pulumi.get(self, "ibm_region_gen2")
 
     @property
     @pulumi.getter(name="keyPasswd")

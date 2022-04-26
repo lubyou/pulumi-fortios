@@ -5,11 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Replacement messages. Applies to FortiOS Version `<= 6.4.0`.
+ * Replacement messages. Applies to FortiOS Version `<= 6.4.1`.
  *
  * ## Import
  *
- * SystemReplacemsg Nntp can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * SystemReplacemsg Nntp can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/systemReplacemsgNntp:SystemReplacemsgNntp labelname {{msg_type}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/systemReplacemsgNntp:SystemReplacemsgNntp labelname {{msg_type}}

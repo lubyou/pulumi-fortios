@@ -103,7 +103,13 @@ class SwitchControllerMacSyncSettings(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController MacSyncSettings can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController MacSyncSettings can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
@@ -127,7 +133,13 @@ class SwitchControllerMacSyncSettings(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController MacSyncSettings can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController MacSyncSettings can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings labelname SwitchControllerMacSyncSettings

@@ -30,7 +30,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * System SdnConnector can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * System SdnConnector can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/systemSdnConnector:SystemSdnConnector labelname {{name}}
@@ -134,6 +140,14 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      * IBM cloud region name.
      */
     public readonly ibmRegion!: pulumi.Output<string>;
+    /**
+     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     */
+    public readonly ibmRegionGen1!: pulumi.Output<string>;
+    /**
+     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+     */
+    public readonly ibmRegionGen2!: pulumi.Output<string>;
     /**
      * Private key password.
      */
@@ -305,6 +319,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["haStatus"] = state ? state.haStatus : undefined;
             resourceInputs["ibmRegion"] = state ? state.ibmRegion : undefined;
+            resourceInputs["ibmRegionGen1"] = state ? state.ibmRegionGen1 : undefined;
+            resourceInputs["ibmRegionGen2"] = state ? state.ibmRegionGen2 : undefined;
             resourceInputs["keyPasswd"] = state ? state.keyPasswd : undefined;
             resourceInputs["loginEndpoint"] = state ? state.loginEndpoint : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -365,6 +381,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["groupName"] = args ? args.groupName : undefined;
             resourceInputs["haStatus"] = args ? args.haStatus : undefined;
             resourceInputs["ibmRegion"] = args ? args.ibmRegion : undefined;
+            resourceInputs["ibmRegionGen1"] = args ? args.ibmRegionGen1 : undefined;
+            resourceInputs["ibmRegionGen2"] = args ? args.ibmRegionGen2 : undefined;
             resourceInputs["keyPasswd"] = args ? args.keyPasswd : undefined;
             resourceInputs["loginEndpoint"] = args ? args.loginEndpoint : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -478,6 +496,14 @@ export interface SystemSdnConnectorState {
      * IBM cloud region name.
      */
     ibmRegion?: pulumi.Input<string>;
+    /**
+     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     */
+    ibmRegionGen1?: pulumi.Input<string>;
+    /**
+     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+     */
+    ibmRegionGen2?: pulumi.Input<string>;
     /**
      * Private key password.
      */
@@ -692,6 +718,14 @@ export interface SystemSdnConnectorArgs {
      * IBM cloud region name.
      */
     ibmRegion?: pulumi.Input<string>;
+    /**
+     * IBM cloud compute generation 1 region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     */
+    ibmRegionGen1?: pulumi.Input<string>;
+    /**
+     * IBM cloud compute generation 2 region name. Valid values: `us-south`, `us-east`, `great-britain`.
+     */
+    ibmRegionGen2?: pulumi.Input<string>;
     /**
      * Private key password.
      */

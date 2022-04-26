@@ -213,7 +213,13 @@ class RouterPrefixList6(pulumi.CustomResource):
 
         ## Import
 
-        Router PrefixList6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router PrefixList6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}
@@ -249,7 +255,13 @@ class RouterPrefixList6(pulumi.CustomResource):
 
         ## Import
 
-        Router PrefixList6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Router PrefixList6 can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/routerPrefixList6:RouterPrefixList6 labelname {{name}}

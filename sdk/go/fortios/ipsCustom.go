@@ -14,7 +14,13 @@ import (
 //
 // ## Import
 //
-// Ips Custom can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Ips Custom can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/ipsCustom:IpsCustom labelname {{tag}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/ipsCustom:IpsCustom labelname {{tag}}

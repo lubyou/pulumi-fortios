@@ -9,7 +9,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * FirewallSsh LocalKey can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * FirewallSsh LocalKey can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/firewallSshLocalKey:FirewallSshLocalKey labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/firewallSshLocalKey:FirewallSshLocalKey labelname {{name}}

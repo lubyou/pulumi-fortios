@@ -47,7 +47,13 @@ import (
 //
 // ## Import
 //
-// Firewall Ippool can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Firewall Ippool can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/firewallIppool:FirewallIppool labelname {{name}}

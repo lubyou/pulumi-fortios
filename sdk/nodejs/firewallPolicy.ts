@@ -79,7 +79,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Firewall Policy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Firewall Policy can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/firewallPolicy:FirewallPolicy labelname {{policyid}}
@@ -134,7 +140,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing Application list.
      */
-    public readonly applicationList!: pulumi.Output<string>;
+    public readonly applicationList!: pulumi.Output<string | undefined>;
     /**
      * Application ID list. The structure of `application` block is documented below.
      */
@@ -142,7 +148,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * HTTPS server certificate for policy authentication.
      */
-    public readonly authCert!: pulumi.Output<string>;
+    public readonly authCert!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable authentication-based routing. Valid values: `enable`, `disable`.
      */
@@ -150,7 +156,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * HTTP-to-HTTPS redirect address for firewall authentication.
      */
-    public readonly authRedirectAddr!: pulumi.Output<string>;
+    public readonly authRedirectAddr!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable policy traffic ASIC offloading. Valid values: `enable`, `disable`.
      */
@@ -158,7 +164,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing Antivirus profile.
      */
-    public readonly avProfile!: pulumi.Output<string>;
+    public readonly avProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable block notification. Valid values: `enable`, `disable`.
      */
@@ -174,7 +180,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing CIFS profile.
      */
-    public readonly cifsProfile!: pulumi.Output<string>;
+    public readonly cifsProfile!: pulumi.Output<string | undefined>;
     /**
      * Comment.
      */
@@ -186,7 +192,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Decrypted traffic mirror.
      */
-    public readonly decryptedTrafficMirror!: pulumi.Output<string>;
+    public readonly decryptedTrafficMirror!: pulumi.Output<string | undefined>;
     /**
      * Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
      */
@@ -218,11 +224,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing DLP sensor.
      */
-    public readonly dlpSensor!: pulumi.Output<string>;
+    public readonly dlpSensor!: pulumi.Output<string | undefined>;
     /**
      * Name of an existing DNS filter profile.
      */
-    public readonly dnsfilterProfile!: pulumi.Output<string>;
+    public readonly dnsfilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable DSRI to ignore HTTP server responses. Valid values: `enable`, `disable`.
      */
@@ -258,7 +264,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing email filter profile.
      */
-    public readonly emailfilterProfile!: pulumi.Output<string>;
+    public readonly emailfilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
      */
@@ -266,7 +272,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing file-filter profile.
      */
-    public readonly fileFilterProfile!: pulumi.Output<string>;
+    public readonly fileFilterProfile!: pulumi.Output<string | undefined>;
     /**
      * How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
      */
@@ -278,11 +284,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Enable/disable Fortinet Single Sign-On. Valid values: `enable`, `disable`.
      */
-    public readonly fsso!: pulumi.Output<string>;
+    public readonly fsso!: pulumi.Output<string | undefined>;
     /**
      * FSSO agent to use for NTLM authentication.
      */
-    public readonly fssoAgentForNtlm!: pulumi.Output<string>;
+    public readonly fssoAgentForNtlm!: pulumi.Output<string | undefined>;
     /**
      * Names of FSSO groups. The structure of `fssoGroups` block is documented below.
      */
@@ -298,7 +304,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Label for the policy that appears when the GUI is in Global View mode.
      */
-    public readonly globalLabel!: pulumi.Output<string>;
+    public readonly globalLabel!: pulumi.Output<string | undefined>;
     /**
      * Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
      */
@@ -310,11 +316,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing ICAP profile.
      */
-    public readonly icapProfile!: pulumi.Output<string>;
+    public readonly icapProfile!: pulumi.Output<string | undefined>;
     /**
      * Name of identity-based routing rule.
      */
-    public readonly identityBasedRoute!: pulumi.Output<string>;
+    public readonly identityBasedRoute!: pulumi.Output<string | undefined>;
     /**
      * Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `enable`, `disable`.
      */
@@ -386,15 +392,15 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing IPS sensor.
      */
-    public readonly ipsSensor!: pulumi.Output<string>;
+    public readonly ipsSensor!: pulumi.Output<string | undefined>;
     /**
      * Label for the policy that appears when the GUI is in Section View mode.
      */
-    public readonly label!: pulumi.Output<string>;
+    public readonly label!: pulumi.Output<string | undefined>;
     /**
      * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
      */
-    public readonly learningMode!: pulumi.Output<string>;
+    public readonly learningMode!: pulumi.Output<string | undefined>;
     /**
      * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
      */
@@ -466,7 +472,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Per-IP traffic shaper.
      */
-    public readonly perIpShaper!: pulumi.Output<string>;
+    public readonly perIpShaper!: pulumi.Output<string | undefined>;
     /**
      * Accept UDP packets from any host. Valid values: `enable`, `disable`.
      */
@@ -490,7 +496,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of profile group.
      */
-    public readonly profileGroup!: pulumi.Output<string>;
+    public readonly profileGroup!: pulumi.Output<string | undefined>;
     /**
      * Name of an existing Protocol options profile.
      */
@@ -506,11 +512,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * URL users are directed to after seeing and accepting the disclaimer or authenticating.
      */
-    public readonly redirectUrl!: pulumi.Output<string>;
+    public readonly redirectUrl!: pulumi.Output<string | undefined>;
     /**
      * Override the default replacement message group for this policy.
      */
-    public readonly replacemsgOverrideGroup!: pulumi.Output<string>;
+    public readonly replacemsgOverrideGroup!: pulumi.Output<string | undefined>;
     /**
      * Direction of the initial traffic for reputation to take effect. Valid values: `source`, `destination`.
      */
@@ -522,7 +528,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Enable/disable RADIUS single sign-on (RSSO). Valid values: `enable`, `disable`.
      */
-    public readonly rsso!: pulumi.Output<string>;
+    public readonly rsso!: pulumi.Output<string | undefined>;
     /**
      * Address names if this is an RTP NAT policy. The structure of `rtpAddr` block is documented below.
      */
@@ -534,7 +540,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
      */
-    public readonly scanBotnetConnections!: pulumi.Output<string>;
+    public readonly scanBotnetConnections!: pulumi.Output<string | undefined>;
     /**
      * Schedule name.(Default is `always`)
      */
@@ -546,7 +552,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing SCTP filter profile.
      */
-    public readonly sctpFilterProfile!: pulumi.Output<string>;
+    public readonly sctpFilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
      */
@@ -562,7 +568,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
      */
-    public readonly sessionTtl!: pulumi.Output<number>;
+    public readonly sessionTtl!: pulumi.Output<number | undefined>;
     /**
      * Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
      */
@@ -574,7 +580,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing Spam filter profile.
      */
-    public readonly spamfilterProfile!: pulumi.Output<string>;
+    public readonly spamfilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
      */
@@ -598,7 +604,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing SSH filter profile.
      */
-    public readonly sshFilterProfile!: pulumi.Output<string>;
+    public readonly sshFilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Redirect SSH traffic to matching transparent proxy policy. Valid values: `enable`, `disable`.
      */
@@ -606,7 +612,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `enable`, `disable`.
      */
-    public readonly sslMirror!: pulumi.Output<string>;
+    public readonly sslMirror!: pulumi.Output<string | undefined>;
     /**
      * SSL mirror interface name. The structure of `sslMirrorIntf` block is documented below.
      */
@@ -650,11 +656,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Traffic shaper.
      */
-    public readonly trafficShaper!: pulumi.Output<string>;
+    public readonly trafficShaper!: pulumi.Output<string | undefined>;
     /**
      * Reverse traffic shaper.
      */
-    public readonly trafficShaperReverse!: pulumi.Output<string>;
+    public readonly trafficShaperReverse!: pulumi.Output<string | undefined>;
     /**
      * URL category ID list. The structure of `urlCategory` block is documented below.
      */
@@ -678,7 +684,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing VideoFilter profile.
      */
-    public readonly videofilterProfile!: pulumi.Output<string>;
+    public readonly videofilterProfile!: pulumi.Output<string | undefined>;
     /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
@@ -690,19 +696,19 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Set VLAN filters.
      */
-    public readonly vlanFilter!: pulumi.Output<string>;
+    public readonly vlanFilter!: pulumi.Output<string | undefined>;
     /**
      * Name of an existing VoIP profile.
      */
-    public readonly voipProfile!: pulumi.Output<string>;
+    public readonly voipProfile!: pulumi.Output<string | undefined>;
     /**
      * Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
      */
-    public readonly vpntunnel!: pulumi.Output<string>;
+    public readonly vpntunnel!: pulumi.Output<string | undefined>;
     /**
      * Name of an existing Web application firewall profile.
      */
-    public readonly wafProfile!: pulumi.Output<string>;
+    public readonly wafProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable WAN optimization. Valid values: `enable`, `disable`.
      */
@@ -718,11 +724,11 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * WAN optimization peer.
      */
-    public readonly wanoptPeer!: pulumi.Output<string>;
+    public readonly wanoptPeer!: pulumi.Output<string | undefined>;
     /**
      * WAN optimization profile.
      */
-    public readonly wanoptProfile!: pulumi.Output<string>;
+    public readonly wanoptProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable forwarding traffic matching this policy to a configured WCCP server. Valid values: `enable`, `disable`.
      */
@@ -738,19 +744,19 @@ export class FirewallPolicy extends pulumi.CustomResource {
     /**
      * Name of an existing Web filter profile.
      */
-    public readonly webfilterProfile!: pulumi.Output<string>;
+    public readonly webfilterProfile!: pulumi.Output<string | undefined>;
     /**
      * Web proxy forward server name.
      */
-    public readonly webproxyForwardServer!: pulumi.Output<string>;
+    public readonly webproxyForwardServer!: pulumi.Output<string | undefined>;
     /**
      * Webproxy profile name.
      */
-    public readonly webproxyProfile!: pulumi.Output<string>;
+    public readonly webproxyProfile!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
      */
-    public readonly wsso!: pulumi.Output<string>;
+    public readonly wsso!: pulumi.Output<string | undefined>;
     /**
      * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
      */

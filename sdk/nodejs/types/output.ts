@@ -12287,7 +12287,7 @@ export interface GetSystemAutomationDestinationDestination {
 
 export interface GetSystemAutomationTriggerField {
     /**
-     * Entry ID.
+     * Log ID.
      */
     id: number;
     /**
@@ -12298,6 +12298,13 @@ export interface GetSystemAutomationTriggerField {
      * Value.
      */
     value: string;
+}
+
+export interface GetSystemAutomationTriggerLogidBlock {
+    /**
+     * Log ID.
+     */
+    id: number;
 }
 
 export interface GetSystemCentralManagementServerList {
@@ -21657,7 +21664,7 @@ export interface SystemAutomationStitchDestination {
 
 export interface SystemAutomationTriggerField {
     /**
-     * Entry ID.
+     * Log ID.
      */
     id: number;
     /**
@@ -21668,6 +21675,13 @@ export interface SystemAutomationTriggerField {
      * Value.
      */
     value?: string;
+}
+
+export interface SystemAutomationTriggerLogidBlock {
+    /**
+     * Log ID.
+     */
+    id: number;
 }
 
 export interface SystemCentralManagementServerList {

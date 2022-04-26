@@ -31,7 +31,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Router Policy6 can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * Router Policy6 can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/routerPolicy6:RouterPolicy6 labelname {{seq_num}}

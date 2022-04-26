@@ -301,7 +301,13 @@ class EndpointControlRegisteredForticlient(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl RegisteredForticlient can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        EndpointControl RegisteredForticlient can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
@@ -331,7 +337,13 @@ class EndpointControlRegisteredForticlient(pulumi.CustomResource):
 
         ## Import
 
-        EndpointControl RegisteredForticlient can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        EndpointControl RegisteredForticlient can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient labelname {{uid}}

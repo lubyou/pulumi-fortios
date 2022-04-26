@@ -254,7 +254,13 @@ class FirewallScheduleGroup(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSchedule Group can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSchedule Group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}
@@ -300,7 +306,13 @@ class FirewallScheduleGroup(pulumi.CustomResource):
 
         ## Import
 
-        FirewallSchedule Group can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        FirewallSchedule Group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/firewallScheduleGroup:FirewallScheduleGroup labelname {{name}}

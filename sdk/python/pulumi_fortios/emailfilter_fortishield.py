@@ -169,7 +169,13 @@ class EmailfilterFortishield(pulumi.CustomResource):
 
         ## Import
 
-        Emailfilter Fortishield can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Fortishield can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield
@@ -195,7 +201,13 @@ class EmailfilterFortishield(pulumi.CustomResource):
 
         ## Import
 
-        Emailfilter Fortishield can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Emailfilter Fortishield can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/emailfilterFortishield:EmailfilterFortishield labelname EmailfilterFortishield

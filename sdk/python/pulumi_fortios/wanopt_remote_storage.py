@@ -213,7 +213,13 @@ class WanoptRemoteStorage(pulumi.CustomResource):
 
         ## Import
 
-        Wanopt RemoteStorage can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Wanopt RemoteStorage can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
@@ -251,7 +257,13 @@ class WanoptRemoteStorage(pulumi.CustomResource):
 
         ## Import
 
-        Wanopt RemoteStorage can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        Wanopt RemoteStorage can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/wanoptRemoteStorage:WanoptRemoteStorage labelname WanoptRemoteStorage

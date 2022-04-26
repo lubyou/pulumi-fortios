@@ -369,7 +369,13 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController VlanPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController VlanPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
@@ -401,7 +407,13 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
 
         ## Import
 
-        SwitchController VlanPolicy can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+        SwitchController VlanPolicy can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}
+        ```
+
+         If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
          $ pulumi import fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy labelname {{name}}

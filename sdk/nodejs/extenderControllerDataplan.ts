@@ -9,7 +9,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * ExtenderController Dataplan can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+ * ExtenderController Dataplan can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
+ * ```
+ *
+ *  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
  *  $ pulumi import fortios:index/extenderControllerDataplan:ExtenderControllerDataplan labelname {{name}}
@@ -45,6 +51,9 @@ export class ExtenderControllerDataplan extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtenderControllerDataplan.__pulumiType;
     }
 
+    /**
+     * APN configuration.
+     */
     public readonly apn!: pulumi.Output<string>;
     /**
      * Authentication type. Valid values: `none`, `pap`, `chap`.
@@ -86,6 +95,9 @@ export class ExtenderControllerDataplan extends pulumi.CustomResource {
      * Password.
      */
     public readonly password!: pulumi.Output<string | undefined>;
+    /**
+     * PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+     */
     public readonly pdn!: pulumi.Output<string>;
     /**
      * Preferred subnet mask (8 - 32).
@@ -185,6 +197,9 @@ export class ExtenderControllerDataplan extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExtenderControllerDataplan resources.
  */
 export interface ExtenderControllerDataplanState {
+    /**
+     * APN configuration.
+     */
     apn?: pulumi.Input<string>;
     /**
      * Authentication type. Valid values: `none`, `pap`, `chap`.
@@ -226,6 +241,9 @@ export interface ExtenderControllerDataplanState {
      * Password.
      */
     password?: pulumi.Input<string>;
+    /**
+     * PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+     */
     pdn?: pulumi.Input<string>;
     /**
      * Preferred subnet mask (8 - 32).
@@ -265,6 +283,9 @@ export interface ExtenderControllerDataplanState {
  * The set of arguments for constructing a ExtenderControllerDataplan resource.
  */
 export interface ExtenderControllerDataplanArgs {
+    /**
+     * APN configuration.
+     */
     apn?: pulumi.Input<string>;
     /**
      * Authentication type. Valid values: `none`, `pap`, `chap`.
@@ -306,6 +327,9 @@ export interface ExtenderControllerDataplanArgs {
      * Password.
      */
     password?: pulumi.Input<string>;
+    /**
+     * PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+     */
     pdn?: pulumi.Input<string>;
     /**
      * Preferred subnet mask (8 - 32).

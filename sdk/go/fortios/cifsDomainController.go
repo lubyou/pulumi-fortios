@@ -10,11 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
+// Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1`.
 //
 // ## Import
 //
-// Cifs DomainController can be imported using any of these accepted formats$ export "FORTIOS_IMPORT_TABLE"="true"
+// Cifs DomainController can be imported using any of these accepted formats
+//
+// ```sh
+//  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}
+// ```
+//
+//  If you do not want to import arguments of block$ export "FORTIOS_IMPORT_TABLE"="false"
 //
 // ```sh
 //  $ pulumi import fortios:index/cifsDomainController:CifsDomainController labelname {{server_name}}

@@ -103,6 +103,14 @@ export interface GetSystemSdnConnectorResult {
      */
     readonly ibmRegion: string;
     /**
+     * IBM cloud compute generation 1 region name.
+     */
+    readonly ibmRegionGen1: string;
+    /**
+     * IBM cloud compute generation 2 region name.
+     */
+    readonly ibmRegionGen2: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
