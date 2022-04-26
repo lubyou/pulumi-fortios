@@ -14,7 +14,7 @@ Update the `terraform-provider-fortios` sub module
 Next, update and build the provider:
 
     # update dependencies
-    (cd provider && go mod tidy && cd -)
+    (cd provider && go get -u && go mod tidy && cd -)
 
     # update provider/resources.go
     update-scripts/update.sh

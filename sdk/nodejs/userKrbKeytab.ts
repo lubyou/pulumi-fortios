@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname2 = new fortios.UserLdap("trname2", {
  *     accountKeyFilter: `(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`,
