@@ -10,7 +10,7 @@ import yaml
 DATA_SOURCE_SCHEMA_START_PATTERN = r"\s*DataSourcesMap.+schema\.Resource.+"
 RESOURCE_SCHEMA_START_PATTERN = r"\s*ResourcesMap.+schema\.Resource.+"
 RESOURCE_NAME_PATTERN = (
-    r'\s*"(?P<snake_case>\w+)"\s*:\s*(?:dataSource|resource)(?P<camel_case>\w+)\(\s*\)'
+    r'\s*\"(?P<snake_case>\w+)\"\s*:\s*(?:dataSource|resource)(?P<camel_case>\w+)\(\s*\)'
 )
 PROVIDER_SCHEMA_START_PATTERN = r"\s*Schema:\s*map\[string\]\*schema\.Schema\s*{\s*"
 PROVIDER_SCHEMA_VAR_PATTERN = r"\s*\"(\w+)\":\s*.*{\s*"
@@ -30,9 +30,11 @@ def extract_resources(provider_file: str = None):
     current_provider_option = {}
 
     for line in open(provider_file):
+        # provider schema start
         if re.match(PROVIDER_SCHEMA_START_PATTERN, line):
             current_list = provider_options
 
+        # provider option name + env var
         elif current_list is provider_options and (
             m := re.match(PROVIDER_SCHEMA_VAR_PATTERN, line)
         ):
