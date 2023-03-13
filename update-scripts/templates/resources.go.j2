@@ -18,13 +18,11 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/pulumi/pulumi-{{ provider_config.name }}/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi-{{ provider_config.name }}/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/terraform-providers/terraform-provider-{{ provider_config.name }}/{{ provider_config.name }}"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 )
 
 // all of the token components used below.
@@ -47,12 +45,14 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(fortios.Provider().(*schema.Provider))
+	p := shimv2.NewProvider({{ provider_config.name }}.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "{{ provider_config.name }}",
+		P:    p,
+		Name: "{{ provider_config.name }}",
+		// DisplayName is a way to be able to change the casing of the provider
+		// name when being displayed on the Pulumi registry
 		DisplayName: "",
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
@@ -64,8 +64,12 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL:     "",
-		Description: "A Pulumi package for creating and managing {{ provider_config.name }} cloud resources.",
+		LogoURL: "",
+		// PluginDownloadURL is an optional URL used to download the Provider
+		// for use in Pulumi programs
+		// e.g https://github.com/org/pulumi-provider-name/releases/
+		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
+		Description:       "A Pulumi package for creating and managing {{ provider_config.name }} cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
@@ -73,7 +77,10 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/pulumi/pulumi-{{ provider_config.name }}",
-		Config:     map[string]*tfbridge.SchemaInfo{
+		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
+		// should match the TF provider module's require directive, not any replace directives.
+		GitHubOrg: "",
+		Config: map[string]*tfbridge.SchemaInfo{
 			{%- for provider_options_dict in provider_options %}
 			"{{ provider_options_dict.name }}": {
 				{%- if provider_options_dict.env_var %}
@@ -95,7 +102,6 @@ func Provider() tfbridge.ProviderInfo {
 				"{{ ds_snake_case }}": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "Get{{ ds_camel_case }}")},
 			{%- endfor %}
 		},
-		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -105,7 +111,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@lubyou/pulumi-fortios",
+			PackageName: "@lubyou/pulumi-{{ provider_config.name }}",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
